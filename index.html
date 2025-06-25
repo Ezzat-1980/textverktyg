@@ -1,98 +1,234 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
-new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=
-\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,\'script\',\'dataLayer\',\'GTM-KBHD5ZT9\');</script>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snabbt Textverktyg - Allt-i-ett</title>
-    <meta name="description" content="Gratis online-verktyg för textanalys, ordräknare, omvandling av versaler/gemener, rensning av mellanslag, borttagning av dubblettrader, extrahering av e-post och URL:er samt sök och ersätt.">
-    
+    <title>Textverktyget.se - Din Allt-i-ett Textanalysator</title>
+    <meta name="description" content="Gratis online-verktyg för avancerad textanalys, ordräknare, stavningskontroll, omvandling, rensning, extrahering, sök/ersätt och textgenerering.">
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KBHD5ZT9');</script>
     <link rel="stylesheet" href="styles.css">
-</head>
+
+    </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBHD5ZT9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<div class="container">
-        <h1>Textanalysator & Textverktyg</h1>
-        <textarea id="textInput" placeholder="Klistra in din text här för analys, omvandling, rensning, extrahering och sök/ersätt..." oninput="updateStats()"></textarea>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBHD5ZT9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="feedback" class="feedback"></div>
 
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-value" id="wordCount">0</div>
-                <div class="stat-label">Ord</div>
+    <header>
+        <div class="container">
+            <h1>Textanalysator & Textverktyg</h1>
+            <p class="subtitle">Din allt-i-ett lösning för textbearbetning online</p>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section class="text-area-section">
+            <div class="textarea-container">
+                <textarea id="inputText" placeholder="Klistra in din text här för analys, omvandling och mer..." spellcheck="true"></textarea>
+                <div class="textarea-controls">
+                    <button id="undoBtn" class="btn-secondary">Ångra</button>
+                    <button id="copyBtn" class="btn-secondary">Kopiera Text</button>
+                    <button id="clearAllBtn" class="btn-primary">Rensa Allt</button>
+                </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value" id="charCount">0</div>
-                <div class="stat-label">Tecken (inkl. mellanslag)</div>
+        </section>
+
+        <section class="stats-section">
+            <h2>Statistik & Analys</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Ord</span>
+                    <span class="stat-value" id="wordCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Tecken (inkl. mellanslag)</span>
+                    <span class="stat-value" id="charCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Tecken (exkl. mellanslag)</span>
+                    <span class="stat-value" id="charCountNoSpaces">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Rader</span>
+                    <span class="stat-value" id="lineCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Stycken</span>
+                    <span class="stat-value" id="paragraphCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Meningar</span>
+                    <span class="stat-value" id="sentenceCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Genomsnittlig ordlängd</span>
+                    <span class="stat-value" id="avgWordLength">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Läsbarhet (Flesch)</span>
+                    <span class="stat-value" id="readabilityScore">0</span>
+                </div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value" id="charNoSpaceCount">0</div>
-                <div class="stat-label">Tecken (exkl. mellanslag)</div>
+        </section>
+
+        <section class="tools-section">
+            <div class="tool-category">
+                <h2>Textomvandling</h2>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="uppercase">VERSALER</button>
+                    <button class="tool-btn" data-action="lowercase">gemener</button>
+                    <button class="tool-btn" data-action="sentenceCase">Meningsfall</button>
+                    <button class="tool-btn" data-action="titleCase">Titelfall</button>
+                    <button class="tool-btn" data-action="camelCase">camelCase</button>
+                    <button class="tool-btn" data-action="kebabCase">kebab-case</button>
+                    <button class="tool-btn" data-action="snakeCase">snake_case</button>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Textmanipulation</h2>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="reverseText">Omvänd Text</button>
+                    <button class="tool-btn" data-action="reverseWords">Omvänd Ordordning</button>
+                    <button class="tool-btn" data-action="reverseLines">Omvänd Radordning</button>
+                    <button class="tool-btn" data-action="shuffleWords">Blanda Ord</button>
+                    <button class="tool-btn" data-action="shuffleLines">Blanda Rader</button>
+                    <button class="tool-btn" data-action="sortLines">Sortera Rader (A-Ö)</button>
+                    <button class="tool-btn" data-action="sortLinesDesc">Sortera Rader (Ö-A)</button>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Textrensning</h2>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="removeExtraSpaces">Ta bort extra mellanslag</button>
+                    <button class="tool-btn" data-action="removeEmptyLines">Ta bort tomma rader</button>
+                    <button class="tool-btn" data-action="removeNumbers">Ta bort siffror</button>
+                    <button class="tool-btn" data-action="removeDuplicateLines">Ta bort dubblettrader</button>
+                    <button class="tool-btn" data-action="removeSpecialChars">Ta bort specialtecken</button>
+                    <button class="tool-btn" data-action="removeHtmlTags">Ta bort HTML-taggar</button>
+                    <button class="tool-btn" data-action="trimLines">Trimma Rader</button>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Textformatering</h2>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="addLineNumbers">Lägg till radnummer</button>
+                    <button class="tool-btn" data-action="addBulletPoints">Lägg till punktlistor</button>
+                    <button class="tool-btn" data-action="addNumberedList">Lägg till numrerad lista</button>
+                    <button class="tool-btn" data-action="indentText">Indrag</button>
+                    <button class="tool-btn" data-action="wrapText">Radbryt text</button>
+                    <div class="prefix-suffix-controls">
+                        <input type="text" id="prefixInput" placeholder="Prefix" size="8">
+                        <input type="text" id="suffixInput" placeholder="Suffix" size="8">
+                        <button class="tool-btn" data-action="addPrefixSuffix">Lägg till prefix/suffix</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Konvertering</h2>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="toBase64">Till Base64</button>
+                    <button class="tool-btn" data-action="fromBase64">Från Base64</button>
+                    <button class="tool-btn" data-action="urlEncode">URL-koda</button>
+                    <button class="tool-btn" data-action="urlDecode">URL-avkoda</button>
+                    <button class="tool-btn" data-action="toHtml">Till HTML</button>
+                    <button class="tool-btn" data-action="fromHtml">Från HTML</button>
+                    <button class="tool-btn" data-action="toJson">Till JSON (rad för rad)</button>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Extrahera & Filtrera</h2>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="extractEmails">Extrahera E-postadresser</button>
+                    <button class="tool-btn" data-action="extractUrls">Extrahera URL:er</button>
+                    <button class="tool-btn" data-action="extractNumbers">Extrahera Siffror</button>
+                    <button class="tool-btn" data-action="extractPhones">Extrahera Telefonnr</button>
+                    <button class="tool-btn" data-action="extractUniqueWords">Extrahera Unika Ord</button>
+                    <button class="tool-btn" data-action="wordFrequency">Ordfrekvens</button>
+                </div>
+                <h3>Extraherade Resultat</h3>
+                <div id="extractionResult" class="result-display">
+                    Här visas extraherade e-postadresser, URL:er eller andra resultat.
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Sök och Ersätt</h2>
+                <div class="find-replace-controls">
+                    <input type="text" id="searchText" placeholder="Sök efter text..." />
+                    <input type="text" id="replaceText" placeholder="Ersätt med..." />
+                    <div class="search-options">
+                        <label><input type="checkbox" id="caseSensitive"> Skiftlägeskänslig</label>
+                        <label><input type="checkbox" id="useRegex"> Använd Regex</label>
+                    </div>
+                </div>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="replaceAll">Ersätt alla</button>
+                    <button class="tool-btn" data-action="highlightMatches">Markera matchningar</button>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Textgenerering</h2>
+                <div class="generator-controls">
+                    <div class="generator-item">
+                        <label for="loremWords">Lorem Ipsum (antal ord):</label>
+                        <input type="number" id="loremWords" value="50" min="1">
+                        <button class="tool-btn" data-action="generateLorem">Generera Lorem Ipsum</button>
+                    </div>
+                    <div class="generator-item">
+                        <label for="randomWordsCount">Slumpmässiga ord (antal):</label>
+                        <input type="number" id="randomWordsCount" value="10" min="1">
+                        <button class="tool-btn" data-action="generateRandomWords">Generera slumpmässiga ord</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-category">
+                <h2>Jämförelse</h2>
+                <div class="comparison-controls">
+                    <textarea id="compareText" placeholder="Klistra in text att jämföra med..."></textarea>
+                </div>
+                <div class="tool-buttons">
+                    <button class="tool-btn" data-action="compareTexts">Jämför texter</button>
+                </div>
+                <h3>Jämförelseresultat</h3>
+                <div id="comparisonResult" class="results-container">
+                    Här visas resultatet av textjämförelsen.
+                </div>
+            </div>
+        </section>
+
+        <section id="resultsContainer" class="results-container" style="display: none;">
+            <h3>Resultat</h3>
+            <pre id="resultsContent"></pre>
+            <div class="textarea-controls">
+                 <button id="clearResultsBtn" class="btn-secondary">Rensa Resultatruta</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Textverktyget.se. Alla rättigheter reserverade.</p>
+            <div class="social-share">
+                <button class="share-btn" data-platform="twitter">Dela på X</button>
+                <button class="share-btn" data-platform="facebook">Dela på Facebook</button>
+                <button class="share-btn" data-platform="linkedin">Dela på LinkedIn</button>
             </div>
         </div>
-
-        <div class="tool-section">
-            <h2>Textomvandling</h2>
-            <div class="tool-buttons">
-                <button onclick="convertToUppercase()">VERSALER</button>
-                <button onclick="convertToLowercase()">gemener</button>
-                <button onclick="convertToSentenceCase()">Meningsfall</button>
-                <button onclick="convertToTitleCase()">Titelfall</button>
-            </div>
-        </div>
-
-        <div class="tool-section">
-            <h2>Textmanipulation</h2>
-            <div class="tool-buttons">
-                <button onclick="reverseText()">Omvänd Text</button>
-                <button onclick="reverseWordOrder()">Omvänd Ordordning</button>
-            </div>
-        </div>
-
-
-        <div class="tool-section">
-            <h2>Textrensning</h2>
-            <div class="tool-buttons">
-                <button onclick="removeExtraSpaces()">Ta bort extra mellanslag</button>
-                <button onclick="removeEmptyLines()">Ta bort tomma rader</button>
-                <button onclick="removeNumbers()">Ta bort siffror</button>
-                <button onclick="removeDuplicateLines()">Ta bort dubblettrader</button>
-                <button class="clear-button" onclick="clearText()">Rensa text</button>
-            </div>
-        </div>
-
-        <div class="tool-section">
-            <h2>Extrahera & Filtrera</h2>
-            <div class="tool-buttons">
-                <button onclick="extractEmails()">Extrahera E-postadresser</button>
-                <button onclick="extractURLs()">Extrahera URL:er</button>
-                <button onclick="clearExtractionResult()" class="clear-button">Rensa resultat</button>
-            </div>
-            <h3>Extraherade Resultat</h3>
-            <div id="extractionResult" class="result-display">
-                Här visas extraherade e-postadresser, URL:er eller andra resultat.
-            </div>
-        </div>
-
-        <div class="tool-section">
-            <h2>Sök och Ersätt</h2>
-            <div class="find-replace-inputs">
-                <input type="text" id="findInput" placeholder="Sök efter text..." />
-                <input type="text" id="replaceInput" placeholder="Ersätt med..." />
-            </div>
-            <div class="tool-buttons">
-                <button onclick="findAndReplace()">Ersätt alla</button>
-            </div>
-        </div>
-
-    </div>
+    </footer>
 
     <script src="script.js"></script>
 
 </body>
 </html>
-
