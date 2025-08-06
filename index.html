@@ -56,14 +56,13 @@
             font-weight: 300;
         }
         
-        /* NY SEKTION FÖR ADSENSE */
         .about-section {
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-            margin-bottom: 30px; /* Avstånd till verktyget */
+            margin-bottom: 30px;
             animation: fadeIn 0.6s ease-out forwards;
         }
         .about-section h2 {
@@ -79,16 +78,13 @@
             font-size: 1.1rem;
             line-height: 1.7;
         }
-        /* SLUT PÅ NY CSS */
 
-        /* Huvudinnehåll */
         .main-content {
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
         }
 
-        /* Textområde */
         .text-area-section {
             background: rgba(255, 255, 255, 0.95);
             padding: 25px;
@@ -127,7 +123,6 @@
             justify-content: flex-end;
         }
 
-        /* Resultatområde */
         .results-container {
             margin-top: 20px;
             padding: 20px;
@@ -152,7 +147,6 @@
             border: 1px solid #e0e6ed;
         }
 
-        /* Statistik */
         .stats-section {
             background: rgba(255, 255, 255, 0.95);
             padding: 25px;
@@ -194,7 +188,6 @@
             font-size: 1.1rem;
         }
 
-        /* Verktyg */
         .tools-section {
             display: grid;
             gap: 25px;
@@ -222,7 +215,6 @@
             gap: 10px;
         }
 
-        /* Knappar */
         .btn-primary, .btn-secondary, .tool-btn {
             padding: 10px 20px;
             border: none;
@@ -274,7 +266,6 @@
             box-shadow: 0 2px 5px rgba(102, 126, 234, 0.2);
         }
 
-        /* Kontroller */
         .prefix-suffix-controls, .search-replace-controls, .generator-controls, .comparison-controls {
             margin-top: 15px;
         }
@@ -332,7 +323,6 @@
             resize: vertical;
         }
 
-        /* Feedback */
         .feedback {
             position: fixed;
             top: 20px;
@@ -362,7 +352,6 @@
             background: #17a2b8;
         }
 
-        /* Footer */
         footer {
             margin-top: 50px;
             text-align: center;
@@ -382,24 +371,27 @@
             display: flex;
             justify-content: center;
             gap: 15px;
+            margin-top: 20px;
         }
 
         .share-btn {
-            padding: 8px 16px;
+            padding: 10px 20px;
             background: #667eea;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .share-btn:hover {
             background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        /* Responsiv design */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -460,7 +452,7 @@
             }
             
             .tool-btn {
-                width: 100%; /* Gör knappar fullbredd för enklare klick */
+                width: 100%;
             }
 
             .search-replace-controls {
@@ -470,7 +462,6 @@
             }
         }
 
-        /* Animationer */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -503,6 +494,7 @@
             <p>Här kan du direkt få detaljerad statistik som ordräkning och läsbarhet, omvandla text till olika format som versaler eller gemener, rensa bort oönskade mellanslag och dubbletter, samt extrahera viktig information som e-postadresser och länkar.</p>
             <p><strong>Kom igång direkt!</strong> Klistra in din text i rutan nedan för att se statistiken och börja använda verktygen.</p>
         </section>
+
         <main class="main-content">
             <section class="text-area-section">
                 <div class="textarea-container">
@@ -609,12 +601,34 @@
         <footer>
             <p>&copy; 2025 Textverktyget.se - Alla rättigheter förbehållna.</p>
             <p>Ett gratis verktyg för att analysera, omvandla och manipulera text. Perfekt för skribenter, utvecklare och studenter.</p>
+            <div class="social-share">
+                <button class="share-btn" data-platform="twitter">Dela på Twitter</button>
+                <button class="share-btn" data-platform="facebook">Dela på Facebook</button>
+            </div>
         </footer>
     </div>
 
     <div id="feedback" class="feedback"></div>
 
     <script>
+        function shareOnSocialMedia(platform) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Kolla in detta fantastiska textverktyg på Textverktyget.se!');
+
+            let shareUrl;
+            switch(platform) {
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                default:
+                    return;
+            }
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             const inputText = document.getElementById('inputText');
             const resultsContainer = document.getElementById('resultsContainer');
@@ -643,6 +657,13 @@
                 btn.addEventListener('click', function() {
                     const action = this.getAttribute('data-action');
                     executeAction(action);
+                });
+            });
+
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const platform = this.getAttribute('data-platform');
+                    shareOnSocialMedia(platform);
                 });
             });
 
@@ -772,13 +793,11 @@
             
             function calculateReadability(words, sentences, syllables) {
                  if (words < 30 || sentences === 0) return '-';
-                 // Flesch Reading Ease formula
                  const score = 206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words);
                  return Math.round(Math.max(0, Math.min(100, score)));
             }
             
             function countSyllables(text) {
-                // This is a simple approximation
                 text = text.toLowerCase();
                 if(text.length <= 3) { return 1; }
                 text = text.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
