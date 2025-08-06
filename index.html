@@ -55,6 +55,31 @@
             color: #7f8c8d;
             font-weight: 300;
         }
+        
+        /* NY SEKTION FÖR ADSENSE */
+        .about-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 30px; /* Avstånd till verktyget */
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .about-section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e0e6ed;
+            padding-bottom: 10px;
+        }
+        .about-section p {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        /* SLUT PÅ NY CSS */
 
         /* Huvudinnehåll */
         .main-content {
@@ -430,7 +455,7 @@
                 padding: 20px;
             }
             
-            .text-area-section, .stats-section, .tool-category {
+            .text-area-section, .stats-section, .tool-category, .about-section {
                 padding: 20px;
             }
             
@@ -472,6 +497,12 @@
             <p class="subtitle">Ditt allt-i-ett verktyg för textanalys och manipulation</p>
         </header>
 
+        <section class="about-section">
+            <h2>Välkommen till din digitala textassistent!</h2>
+            <p>Textverktyget.se är ett gratis och kraftfullt online-verktyg skapat för alla som arbetar med text. Oavsett om du är student, skribent, utvecklare eller bara vill få snabb koll på en text, finns vi här för att hjälpa till.</p>
+            <p>Här kan du direkt få detaljerad statistik som ordräkning och läsbarhet, omvandla text till olika format som versaler eller gemener, rensa bort oönskade mellanslag och dubbletter, samt extrahera viktig information som e-postadresser och länkar.</p>
+            <p><strong>Kom igång direkt!</strong> Klistra in din text i rutan nedan för att se statistiken och börja använda verktygen.</p>
+        </section>
         <main class="main-content">
             <section class="text-area-section">
                 <div class="textarea-container">
@@ -604,9 +635,8 @@
             if (inputText) {
                 inputText.addEventListener('input', () => {
                     updateStats();
-                    // Spara inte varje tecken i historiken för prestanda
                 });
-                 inputText.addEventListener('change', saveToHistory); // Spara när användaren är klar
+                 inputText.addEventListener('change', saveToHistory);
             }
 
             document.querySelectorAll('.tool-btn').forEach(btn => {
