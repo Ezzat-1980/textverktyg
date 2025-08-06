@@ -5,8 +5,463 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Textverktyget.se - Din Allt-i-ett Textanalysator</title>
     <meta name="description" content="Gratis online-verktyg för avancerad textanalys, ordräknare, stavningskontroll, omvandling, rensning, extrahering, sök/ersätt och textgenerering.">
-    <link rel="stylesheet" href="styles.css">
-    </head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KBHD5ZT9');</script>
+    <style>
+        /* Reset och grundläggande stilar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        /* Huvudinnehåll */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        /* Textområde */
+        .text-area-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .textarea-container {
+            position: relative;
+        }
+
+        #inputText {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid #e0e6ed;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            background: #fafbfc;
+        }
+
+        #inputText:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .textarea-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: flex-end;
+        }
+
+        /* Resultatområde */
+        .results-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .results-container h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        #resultsContent {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e0e6ed;
+        }
+
+        /* Statistik */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        /* Verktyg */
+        .tools-section {
+            display: grid;
+            gap: 25px;
+        }
+
+        .tool-category {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .tool-category h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #e0e6ed;
+            padding-bottom: 10px;
+        }
+
+        .tool-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Knappar */
+        .btn-primary, .btn-secondary, .tool-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .tool-btn {
+            background: #e9ecef;
+            color: #495057;
+            border: 1px solid #ced4da;
+        }
+
+        .tool-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .tool-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Kontroller */
+        .prefix-suffix-controls, .search-replace-controls, .generator-controls, .comparison-controls {
+            margin-top: 15px;
+        }
+
+        .prefix-suffix-controls input, .search-replace-controls input, .generator-controls input {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .search-options {
+            margin: 10px 0;
+        }
+
+        .search-options label {
+            margin-right: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .search-options input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .generator-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .generator-item label {
+            min-width: 120px;
+            font-weight: 500;
+        }
+
+        .generator-item input[type="number"] {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+        }
+
+        #compareText {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        /* Feedback */
+        .feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .feedback.show {
+            transform: translateX(0);
+        }
+
+        .feedback.success {
+            background: #28a745;
+        }
+
+        .feedback.error {
+            background: #dc3545;
+        }
+
+        .feedback.info {
+            background: #17a2b8;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        footer p {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .share-btn {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .share-btn:hover {
+            background: #5a67d8;
+        }
+
+        /* Responsiv design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-buttons {
+                justify-content: center;
+            }
+            
+            .textarea-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .social-share {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .generator-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .feedback {
+                width: 90%;
+                left: 5%;
+                bottom: 20px;
+                top: auto;
+                right: auto;
+                text-align: center;
+                transform: translateY(150%);
+            }
+             .feedback.show {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px;
+            }
+            
+            .text-area-section, .stats-section, .tool-category {
+                padding: 20px;
+            }
+            
+            .tool-btn {
+                width: 100%; /* Gör knappar fullbredd för enklare klick */
+            }
+
+            .search-replace-controls {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Animationer */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tool-category, .stats-section, .text-area-section, header, footer {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBHD5ZT9"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -25,7 +480,7 @@
                 <div class="textarea-controls">
                     <button id="copyBtn" class="btn-secondary">Kopiera text</button>
                     <button id="undoBtn" class="btn-secondary">Ångra</button>
-                    <button id="clearAllBtn" class="btn-secondary">Rensa allt</button>
+                    <button id="clearAllBtn" class="btn-primary">Rensa allt</button>
                 </div>
                 <div id="resultsContainer" class="results-container" style="display:none;">
                     <h3>Resultat</h3>
@@ -43,12 +498,24 @@
                     <div class="stat-item"><span class="stat-label">Antal rader:</span> <span id="lineCount" class="stat-value">0</span></div>
                     <div class="stat-item"><span class="stat-label">Antal stycken:</span> <span id="paragraphCount" class="stat-value">0</span></div>
                     <div class="stat-item"><span class="stat-label">Antal meningar:</span> <span id="sentenceCount" class="stat-value">0</span></div>
-                    <div class="stat-item"><span class="stat-label">Läsbarhet (LIX):</span> <span id="readabilityScore" class="stat-value">-</span></div>
+                    <div class="stat-item"><span class="stat-label">Läsbarhetsindex:</span> <span id="readabilityScore" class="stat-value">-</span></div>
                     <div class="stat-item"><span class="stat-label">Medelordlängd:</span> <span id="avgWordLength" class="stat-value">0</span></div>
                 </div>
             </section>
-
+            
             <div class="tools-section">
+                 <div class="tool-category">
+                    <h2>Rensning & Formatering</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn" data-action="removeExtraSpaces">Ta bort extra mellanslag</button>
+                        <button class="tool-btn" data-action="removeEmptyLines">Ta bort tomma rader</button>
+                        <button class="tool-btn" data-action="removeDuplicateLines">Ta bort dubblettrader</button>
+                        <button class="tool-btn" data-action="trimLines">Trimma rader</button>
+                        <button class="tool-btn" data-action="removeHtmlTags">Ta bort HTML-taggar</button>
+                        <button class="tool-btn" data-action="addLineNumbers">Numrera rader</button>
+                    </div>
+                </div>
+
                 <div class="tool-category">
                     <h2>Omvandling</h2>
                     <div class="tool-buttons">
@@ -57,7 +524,6 @@
                         <button class="tool-btn" data-action="sentenceCase">Meningar</button>
                         <button class="tool-btn" data-action="titleCase">Rubrikform</button>
                         <button class="tool-btn" data-action="camelCase">camelCase</button>
-                        <button class="tool-btn" data-action="kebabCase">kebab-case</button>
                         <button class="tool-btn" data-action="snakeCase">snake_case</button>
                     </div>
                 </div>
@@ -68,34 +534,17 @@
                         <button class="tool-btn" data-action="reverseText">Vänd text</button>
                         <button class="tool-btn" data-action="reverseWords">Vänd ord</button>
                         <button class="tool-btn" data-action="reverseLines">Vänd rader</button>
-                        <button class="tool-btn" data-action="shuffleWords">Blanda ord</button>
                         <button class="tool-btn" data-action="shuffleLines">Blanda rader</button>
                         <button class="tool-btn" data-action="sortLines">Sortera rader (A-Ö)</button>
-                        <button class="tool-btn" data-action="sortLinesDesc">Sortera rader (Ö-A)</button>
                     </div>
                 </div>
 
-                 <div class="tool-category">
-                    <h2>Rensning</h2>
-                    <div class="tool-buttons">
-                        <button class="tool-btn" data-action="removeExtraSpaces">Ta bort extra mellanslag</button>
-                        <button class="tool-btn" data-action="removeEmptyLines">Ta bort tomma rader</button>
-                        <button class="tool-btn" data-action="removeDuplicateLines">Ta bort dubblettrader</button>
-                        <button class="tool-btn" data-action="removeNumbers">Ta bort siffror</button>
-                        <button class="tool-btn" data-action="removeSpecialChars">Ta bort specialtecken</button>
-                        <button class="tool-btn" data-action="removeHtmlTags">Ta bort HTML-taggar</button>
-                        <button class="tool-btn" data-action="trimLines">Trimma rader</button>
-                    </div>
-                </div>
-                
                 <div class="tool-category">
                     <h2>Extrahera & Filtrera</h2>
                     <div class="tool-buttons">
                         <button class="tool-btn" data-action="extractEmails">Extrahera e-postadresser</button>
                         <button class="tool-btn" data-action="extractUrls">Extrahera URL:er</button>
                         <button class="tool-btn" data-action="extractNumbers">Extrahera nummer</button>
-                        <button class="tool-btn" data-action="extractPhones">Extrahera telefonnummer</button>
-                        <button class="tool-btn" data-action="extractUniqueWords">Extrahera unika ord</button>
                         <button class="tool-btn" data-action="wordFrequency">Ordfrekvens</button>
                     </div>
                 </div>
@@ -117,54 +566,262 @@
                 </div>
 
                 <div class="tool-category">
-                    <h2>Prefix & Suffix</h2>
-                    <div class="prefix-suffix-controls">
-                        <input type="text" id="prefixInput" placeholder="Prefix...">
-                        <input type="text" id="suffixInput" placeholder="Suffix...">
-                    </div>
-                    <div class="tool-buttons">
-                        <button class="tool-btn" data-action="addPrefixSuffix">Lägg till</button>
-                    </div>
-                </div>
-
-                <div class="tool-category">
-                    <h2>Textgenerering</h2>
-                    <div class="generator-controls">
-                        <div class="generator-item">
-                            <label for="loremWords">Antal Lorem Ipsum-ord:</label>
-                            <input type="number" id="loremWords" value="50">
-                            <button class="tool-btn" data-action="generateLorem">Generera</button>
-                        </div>
-                        <div class="generator-item">
-                            <label for="randomWordsCount">Antal slumpade ord:</label>
-                            <input type="number" id="randomWordsCount" value="10">
-                            <button class="tool-btn" data-action="generateRandomWords">Generera</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tool-category">
                     <h2>Jämför texter</h2>
                     <div class="comparison-controls">
                         <textarea id="compareText" placeholder="Klistra in den andra texten här för att jämföra..."></textarea>
                         <button class="tool-btn" data-action="compareTexts">Jämför nu</button>
                     </div>
                 </div>
-
             </div>
         </main>
 
         <footer>
             <p>&copy; 2025 Textverktyget.se - Alla rättigheter förbehållna.</p>
-            <div class="social-share">
-                <button class="share-btn" data-platform="twitter">Dela på Twitter</button>
-                <button class="share-btn" data-platform="facebook">Dela på Facebook</button>
-            </div>
+            <p>Ett gratis verktyg för att analysera, omvandla och manipulera text. Perfekt för skribenter, utvecklare och studenter.</p>
         </footer>
     </div>
 
     <div id="feedback" class="feedback"></div>
 
-    <script src="script.js"></script>
-    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputText = document.getElementById('inputText');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const resultsContent = document.getElementById('resultsContent');
+            const feedback = document.getElementById('feedback');
+            const wordCount = document.getElementById('wordCount');
+            const charCount = document.getElementById('charCount');
+            const charCountNoSpaces = document.getElementById('charCountNoSpaces');
+            const lineCount = document.getElementById('lineCount');
+            const paragraphCount = document.getElementById('paragraphCount');
+            const sentenceCount = document.getElementById('sentenceCount');
+            const readabilityScore = document.getElementById('readabilityScore');
+            const avgWordLength = document.getElementById('avgWordLength');
+
+            let textHistory = [inputText.value];
+            let currentHistoryIndex = 0;
+
+            if (inputText) {
+                inputText.addEventListener('input', () => {
+                    updateStats();
+                    // Spara inte varje tecken i historiken för prestanda
+                });
+                 inputText.addEventListener('change', saveToHistory); // Spara när användaren är klar
+            }
+
+            document.querySelectorAll('.tool-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    executeAction(action);
+                });
+            });
+
+            document.getElementById('clearAllBtn').addEventListener('click', clearAll);
+            document.getElementById('undoBtn').addEventListener('click', undo);
+            document.getElementById('copyBtn').addEventListener('click', copyText);
+            document.getElementById('clearResultsBtn').addEventListener('click', clearResults);
+
+            updateStats();
+
+            function executeAction(action) {
+                const text = inputText.value;
+                if (!text.trim() && !['generateLorem', 'generateRandomWords'].includes(action)) {
+                    showFeedback('Vänligen ange text först!', 'error');
+                    return;
+                }
+                
+                saveToHistory();
+                
+                let result;
+                let showInResults = false;
+
+                const searchText = document.getElementById('searchText').value;
+                const replaceText = document.getElementById('replaceText').value;
+                const caseSensitive = document.getElementById('caseSensitive').checked;
+                const useRegex = document.getElementById('useRegex').checked;
+                
+                switch(action) {
+                    case 'uppercase': result = text.toUpperCase(); break;
+                    case 'lowercase': result = text.toLowerCase(); break;
+                    case 'sentenceCase': result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase()); break;
+                    case 'titleCase': result = text.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()); break;
+                    case 'camelCase': result = text.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, ''); break;
+                    case 'snakeCase': result = text.trim().toLowerCase().replace(/\s+/g, '_'); break;
+                    case 'reverseText': result = text.split('').reverse().join(''); break;
+                    case 'reverseWords': result = text.split(/\s+/).reverse().join(' '); break;
+                    case 'reverseLines': result = text.split('\n').reverse().join('\n'); break;
+                    case 'shuffleLines': result = shuffleArray(text.split('\n')).join('\n'); break;
+                    case 'sortLines': result = text.split('\n').sort((a, b) => a.localeCompare(b, 'sv')).join('\n'); break;
+                    case 'removeExtraSpaces': result = text.replace(/\s+/g, ' ').trim(); break;
+                    case 'removeEmptyLines': result = text.split('\n').filter(line => line.trim() !== '').join('\n'); break;
+                    case 'removeDuplicateLines': result = [...new Set(text.split('\n'))].join('\n'); break;
+                    case 'removeHtmlTags': result = text.replace(/<[^>]*>/g, ''); break;
+                    case 'trimLines': result = text.split('\n').map(line => line.trim()).join('\n'); break;
+                    case 'addLineNumbers': result = text.split('\n').map((line, index) => `${index + 1}. ${line}`).join('\n'); break;
+                    case 'extractEmails': showInResults = true; result = [...new Set(text.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi) || [])].join('\n'); break;
+                    case 'extractUrls': showInResults = true; result = [...new Set(text.match(/(https?:\/\/[^\s]+)/g) || [])].join('\n'); break;
+                    case 'extractNumbers': showInResults = true; result = [...new Set(text.match(/\d+/g) || [])].join('\n'); break;
+                    case 'wordFrequency': showInResults = true; result = getWordFrequency(text); break;
+                    case 'replaceAll': result = performReplace(text, searchText, replaceText, caseSensitive, useRegex); break;
+                    case 'highlightMatches': showInResults = true; result = highlightMatches(text, searchText, caseSensitive, useRegex); break;
+                    case 'compareTexts': showInResults = true; result = compareTexts(text, document.getElementById('compareText').value); break;
+                    default: showFeedback('Okänd åtgärd!', 'error'); return;
+                }
+                
+                if (showInResults) {
+                    showResults(result);
+                } else {
+                    inputText.value = result;
+                    updateStats();
+                }
+                showFeedback('Åtgärd utförd!', 'success');
+            }
+
+            function getWordFrequency(text) {
+                const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+                const frequency = words.reduce((acc, word) => {
+                    acc[word] = (acc[word] || 0) + 1;
+                    return acc;
+                }, {});
+                return Object.entries(frequency).sort((a, b) => b[1] - a[1]).map(([word, count]) => `${word}: ${count}`).join('\n');
+            }
+
+            function performReplace(text, search, replace, caseSens, isRegex) {
+                if (!search) return text;
+                try {
+                    const flags = caseSens ? 'g' : 'gi';
+                    const regex = isRegex ? new RegExp(search, flags) : new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), flags);
+                    return text.replace(regex, replace);
+                } catch (e) {
+                    showFeedback('Ogiltigt Regex!', 'error');
+                    return text;
+                }
+            }
+            
+            function highlightMatches(text, search, caseSens, isRegex) {
+                if (!search) return text;
+                 try {
+                    const flags = caseSens ? 'g' : 'gi';
+                    const regex = isRegex ? new RegExp(search, flags) : new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), flags);
+                    return text.replace(regex, '<mark>$&</mark>');
+                } catch (e) {
+                    showFeedback('Ogiltigt Regex!', 'error');
+                    return text;
+                }
+            }
+            
+            function compareTexts(text1, text2) {
+                if (!text2.trim()) return 'Ange text att jämföra med.';
+                const dmp = new diff_match_patch();
+                const diff = dmp.diff_main(text1, text2);
+                dmp.diff_cleanupSemantic(diff);
+                return dmp.diff_prettyHtml(diff).replace(/&para;/g, '');
+            }
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function updateStats() {
+                const text = inputText.value;
+                const words = text.trim().split(/\s+/).filter(Boolean);
+                const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+                wordCount.textContent = words.length;
+                charCount.textContent = text.length;
+                charCountNoSpaces.textContent = text.replace(/\s/g, '').length;
+                lineCount.textContent = text.split('\n').length;
+                paragraphCount.textContent = text.split(/\n\s*\n/).filter(Boolean).length;
+                sentenceCount.textContent = sentences.length;
+                avgWordLength.textContent = words.length ? (text.replace(/\s/g, '').length / words.length).toFixed(1) : 0;
+                readabilityScore.textContent = calculateReadability(words.length, sentences.length, countSyllables(text));
+            }
+            
+            function calculateReadability(words, sentences, syllables) {
+                 if (words < 30 || sentences === 0) return '-';
+                 // Flesch Reading Ease formula
+                 const score = 206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words);
+                 return Math.round(Math.max(0, Math.min(100, score)));
+            }
+            
+            function countSyllables(text) {
+                // This is a simple approximation
+                text = text.toLowerCase();
+                if(text.length <= 3) { return 1; }
+                text = text.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+                text = text.replace(/^y/, '');
+                const matches = text.match(/[aeiouy]{1,2}/g);
+                return matches ? matches.length : 0;
+            }
+
+            function saveToHistory() {
+                const currentText = inputText.value;
+                if (textHistory[currentHistoryIndex] !== currentText) {
+                    textHistory = textHistory.slice(0, currentHistoryIndex + 1);
+                    textHistory.push(currentText);
+                    currentHistoryIndex++;
+                     if (textHistory.length > 30) {
+                        textHistory.shift();
+                        currentHistoryIndex--;
+                    }
+                }
+            }
+
+            function undo() {
+                if (currentHistoryIndex > 0) {
+                    currentHistoryIndex--;
+                    inputText.value = textHistory[currentHistoryIndex];
+                    updateStats();
+                    showFeedback('Ångrad!', 'info');
+                } else {
+                    showFeedback('Inget mer att ångra!', 'error');
+                }
+            }
+
+            function clearAll() {
+                saveToHistory();
+                inputText.value = '';
+                updateStats();
+                clearResults();
+                showFeedback('Allt rensat!', 'info');
+            }
+
+            function copyText() {
+                if (!inputText.value) {
+                    showFeedback('Inget att kopiera!', 'error');
+                    return;
+                }
+                navigator.clipboard.writeText(inputText.value).then(() => {
+                    showFeedback('Text kopierad!', 'success');
+                }, () => {
+                    showFeedback('Kopiering misslyckades', 'error');
+                });
+            }
+
+            function showResults(content) {
+                resultsContent.innerHTML = content;
+                resultsContainer.style.display = 'block';
+            }
+
+            function clearResults() {
+                resultsContainer.style.display = 'none';
+                resultsContent.innerHTML = '';
+            }
+            
+            let feedbackTimeout;
+            function showFeedback(message, type) {
+                clearTimeout(feedbackTimeout);
+                feedback.textContent = message;
+                feedback.className = `feedback ${type} show`;
+                feedbackTimeout = setTimeout(() => {
+                    feedback.classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
+</body>
 </html>
