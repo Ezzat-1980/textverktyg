@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Textverktyget.se - Din Allt-i-ett Textanalysator</title>
     <meta name="description" content="Gratis online-verktyg för avancerad textanalys, ordräknare, stavningskontroll, omvandling, rensning, extrahering, sök/ersätt och textgenerering.">
+    
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KBHD5ZT9');</script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6696113059842943"
+         crossorigin="anonymous"></script>
+
     <style>
         /* Reset och grundläggande stilar */
         * {
@@ -372,6 +377,7 @@
             justify-content: center;
             gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .share-btn {
@@ -604,6 +610,7 @@
             <div class="social-share">
                 <button class="share-btn" data-platform="twitter">Dela på Twitter</button>
                 <button class="share-btn" data-platform="facebook">Dela på Facebook</button>
+                <button class="share-btn" data-platform="linkedin">Dela på LinkedIn</button>
             </div>
         </footer>
     </div>
@@ -622,6 +629,9 @@
                     break;
                 case 'facebook':
                     shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
                     break;
                 default:
                     return;
