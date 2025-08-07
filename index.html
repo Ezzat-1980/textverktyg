@@ -486,7 +486,7 @@
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBHD5ZT9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager fallback"></iframe></noscript>
 
     <div class="container">
         <header>
@@ -504,7 +504,7 @@
         <main class="main-content">
             <section class="text-area-section">
                 <div class="textarea-container">
-                    <textarea id="inputText" placeholder="Klistra in din text här..."></textarea>
+                    <textarea id="inputText" placeholder="Klistra in din text här..." aria-label="Huvudtextfält för inmatning"></textarea>
                 </div>
                 <div class="textarea-controls">
                     <button id="copyBtn" class="btn-secondary">Kopiera text</button>
@@ -513,14 +513,14 @@
                 </div>
                 <div id="resultsContainer" class="results-container" style="display:none;">
                     <h3>Resultat</h3>
-                    <pre id="resultsContent"></pre>
+                    <pre id="resultsContent" aria-live="polite"></pre>
                     <button id="clearResultsBtn" class="btn-secondary" style="margin-top: 10px;">Rensa resultat</button>
                 </div>
             </section>
 
             <section class="stats-section">
                 <h2>Statistik</h2>
-                <div class="stats-grid">
+                <div class="stats-grid" aria-live="polite">
                     <div class="stat-item"><span class="stat-label">Antal ord:</span> <span id="wordCount" class="stat-value">0</span></div>
                     <div class="stat-item"><span class="stat-label">Antal tecken:</span> <span id="charCount" class="stat-value">0</span></div>
                     <div class="stat-item"><span class="stat-label">Tecken (utan blanksteg):</span> <span id="charCountNoSpaces" class="stat-value">0</span></div>
@@ -581,8 +581,10 @@
                 <div class="tool-category">
                     <h2>Sök & Ersätt</h2>
                     <div class="search-replace-controls">
-                        <input type="text" id="searchText" placeholder="Sök efter...">
-                        <input type="text" id="replaceText" placeholder="Ersätt med...">
+                        <label for="searchText" class="visually-hidden">Söktext</label>
+                        <input type="text" id="searchText" placeholder="Sök efter..." aria-label="Söktext">
+                        <label for="replaceText" class="visually-hidden">Ersättningstext</label>
+                        <input type="text" id="replaceText" placeholder="Ersätt med..." aria-label="Ersättningstext">
                         <div class="search-options">
                             <label><input type="checkbox" id="caseSensitive"> Skiftlägeskänslig</label>
                             <label><input type="checkbox" id="useRegex"> Använd Regex</label>
@@ -597,7 +599,8 @@
                 <div class="tool-category">
                     <h2>Jämför texter</h2>
                     <div class="comparison-controls">
-                        <textarea id="compareText" placeholder="Klistra in den andra texten här för att jämföra..."></textarea>
+                        <label for="compareText" class="visually-hidden">Jämförelsetext</label>
+                        <textarea id="compareText" placeholder="Klistra in den andra texten här för att jämföra..." aria-label="Jämförelsetext"></textarea>
                         <button class="tool-btn" data-action="compareTexts">Jämför nu</button>
                     </div>
                 </div>
@@ -608,16 +611,17 @@
             <p>&copy; 2025 Textverktyget.se - Alla rättigheter förbehållna.</p>
             <p>Ett gratis verktyg för att analysera, omvandla och manipulera text. Perfekt för skribenter, utvecklare och studenter.</p>
             <div class="social-share">
-                <button class="share-btn" data-platform="twitter">Dela på Twitter</button>
-                <button class="share-btn" data-platform="facebook">Dela på Facebook</button>
-                <button class="share-btn" data-platform="linkedin">Dela på LinkedIn</button>
+                <button class="share-btn" data-platform="twitter" aria-label="Dela på Twitter">Dela på Twitter</button>
+                <button class="share-btn" data-platform="facebook" aria-label="Dela på Facebook">Dela på Facebook</button>
+                <button class="share-btn" data-platform="linkedin" aria-label="Dela på LinkedIn">Dela på LinkedIn</button>
             </div>
         </footer>
     </div>
 
-    <div id="feedback" class="feedback"></div>
+    <div id="feedback" class="feedback" role="alert" aria-live="assertive"></div>
 
     <script>
+        // Funktioner utanför DOMContentLoaded för att vara globalt tillgängliga i skriptet
         function shareOnSocialMedia(platform) {
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent('Kolla in detta fantastiska textverktyg på Textverktyget.se!');
@@ -638,249 +642,263 @@
             }
             window.open(shareUrl, '_blank', 'width=600,height=400');
         }
-        
+
         document.addEventListener('DOMContentLoaded', function() {
-            const inputText = document.getElementById('inputText');
-            const resultsContainer = document.getElementById('resultsContainer');
-            const resultsContent = document.getElementById('resultsContent');
-            const feedback = document.getElementById('feedback');
-            const wordCount = document.getElementById('wordCount');
-            const charCount = document.getElementById('charCount');
-            const charCountNoSpaces = document.getElementById('charCountNoSpaces');
-            const lineCount = document.getElementById('lineCount');
-            const paragraphCount = document.getElementById('paragraphCount');
-            const sentenceCount = document.getElementById('sentenceCount');
-            const readabilityScore = document.getElementById('readabilityScore');
-            const avgWordLength = document.getElementById('avgWordLength');
+            try {
+                // Hela skriptet ligger i en try-catch för att förhindra att ett enda fel kraschar allt.
+                const inputText = document.getElementById('inputText');
+                const resultsContainer = document.getElementById('resultsContainer');
+                const resultsContent = document.getElementById('resultsContent');
+                const feedback = document.getElementById('feedback');
+                const wordCount = document.getElementById('wordCount');
+                const charCount = document.getElementById('charCount');
+                const charCountNoSpaces = document.getElementById('charCountNoSpaces');
+                const lineCount = document.getElementById('lineCount');
+                const paragraphCount = document.getElementById('paragraphCount');
+                const sentenceCount = document.getElementById('sentenceCount');
+                const readabilityScore = document.getElementById('readabilityScore');
+                const avgWordLength = document.getElementById('avgWordLength');
 
-            let textHistory = [inputText.value];
-            let currentHistoryIndex = 0;
+                let textHistory = [inputText.value];
+                let currentHistoryIndex = 0;
 
-            if (inputText) {
-                inputText.addEventListener('input', () => {
-                    updateStats();
+                if (inputText) {
+                    inputText.addEventListener('input', () => {
+                        updateStats();
+                    });
+                     inputText.addEventListener('change', saveToHistory);
+                }
+
+                document.querySelectorAll('.tool-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const action = this.getAttribute('data-action');
+                        executeAction(action);
+                    });
                 });
-                 inputText.addEventListener('change', saveToHistory);
-            }
 
-            document.querySelectorAll('.tool-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const action = this.getAttribute('data-action');
-                    executeAction(action);
+                document.querySelectorAll('.share-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const platform = this.getAttribute('data-platform');
+                        shareOnSocialMedia(platform);
+                    });
                 });
-            });
 
-            document.querySelectorAll('.share-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const platform = this.getAttribute('data-platform');
-                    shareOnSocialMedia(platform);
-                });
-            });
+                document.getElementById('clearAllBtn').addEventListener('click', clearAll);
+                document.getElementById('undoBtn').addEventListener('click', undo);
+                document.getElementById('copyBtn').addEventListener('click', copyText);
+                document.getElementById('clearResultsBtn').addEventListener('click', clearResults);
 
-            document.getElementById('clearAllBtn').addEventListener('click', clearAll);
-            document.getElementById('undoBtn').addEventListener('click', undo);
-            document.getElementById('copyBtn').addEventListener('click', copyText);
-            document.getElementById('clearResultsBtn').addEventListener('click', clearResults);
+                updateStats();
 
-            updateStats();
+                function executeAction(action) {
+                    const text = inputText.value;
+                    if (!text.trim() && !['generateLorem', 'generateRandomWords'].includes(action)) {
+                        showFeedback('Vänligen ange text först!', 'error');
+                        return;
+                    }
+                    
+                    saveToHistory();
+                    
+                    let result;
+                    let showInResults = false;
 
-            function executeAction(action) {
-                const text = inputText.value;
-                if (!text.trim() && !['generateLorem', 'generateRandomWords'].includes(action)) {
-                    showFeedback('Vänligen ange text först!', 'error');
-                    return;
+                    const searchText = document.getElementById('searchText').value;
+                    const replaceText = document.getElementById('replaceText').value;
+                    const caseSensitive = document.getElementById('caseSensitive').checked;
+                    const useRegex = document.getElementById('useRegex').checked;
+                    
+                    switch(action) {
+                        case 'uppercase': result = text.toUpperCase(); break;
+                        case 'lowercase': result = text.toLowerCase(); break;
+                        case 'sentenceCase': result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase()); break;
+                        case 'titleCase': result = text.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()); break;
+                        case 'camelCase': result = text.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, ''); break;
+                        case 'snakeCase': result = text.trim().toLowerCase().replace(/\s+/g, '_'); break;
+                        case 'reverseText': result = text.split('').reverse().join(''); break;
+                        case 'reverseWords': result = text.split(/\s+/).reverse().join(' '); break;
+                        case 'reverseLines': result = text.split('\n').reverse().join('\n'); break;
+                        case 'shuffleLines': result = shuffleArray(text.split('\n')).join('\n'); break;
+                        case 'sortLines': result = text.split('\n').sort((a, b) => a.localeCompare(b, 'sv')).join('\n'); break;
+                        case 'removeExtraSpaces': result = text.replace(/\s+/g, ' ').trim(); break;
+                        case 'removeEmptyLines': result = text.split('\n').filter(line => line.trim() !== '').join('\n'); break;
+                        case 'removeDuplicateLines': result = [...new Set(text.split('\n'))].join('\n'); break;
+                        case 'removeHtmlTags': result = text.replace(/<[^>]*>/g, ''); break;
+                        case 'trimLines': result = text.split('\n').map(line => line.trim()).join('\n'); break;
+                        case 'addLineNumbers': result = text.split('\n').map((line, index) => `${index + 1}. ${line}`).join('\n'); break;
+                        case 'extractEmails': showInResults = true; result = [...new Set(text.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi) || [])].join('\n'); break;
+                        case 'extractUrls': showInResults = true; result = [...new Set(text.match(/(https?:\/\/[^\s]+)/g) || [])].join('\n'); break;
+                        case 'extractNumbers': showInResults = true; result = [...new Set(text.match(/\d+/g) || [])].join('\n'); break;
+                        case 'wordFrequency': showInResults = true; result = getWordFrequency(text); break;
+                        case 'replaceAll': result = performReplace(text, searchText, replaceText, caseSensitive, useRegex); break;
+                        case 'highlightMatches': showInResults = true; result = highlightMatches(text, searchText, caseSensitive, useRegex); break;
+                        case 'compareTexts': showInResults = true; result = compareTexts(text, document.getElementById('compareText').value); break;
+                        default: showFeedback('Okänd åtgärd!', 'error'); return;
+                    }
+                    
+                    if (showInResults) {
+                        showResults(result);
+                    } else {
+                        inputText.value = result;
+                        updateStats();
+                    }
+                    showFeedback('Åtgärd utförd!', 'success');
                 }
-                
-                saveToHistory();
-                
-                let result;
-                let showInResults = false;
 
-                const searchText = document.getElementById('searchText').value;
-                const replaceText = document.getElementById('replaceText').value;
-                const caseSensitive = document.getElementById('caseSensitive').checked;
-                const useRegex = document.getElementById('useRegex').checked;
-                
-                switch(action) {
-                    case 'uppercase': result = text.toUpperCase(); break;
-                    case 'lowercase': result = text.toLowerCase(); break;
-                    case 'sentenceCase': result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase()); break;
-                    case 'titleCase': result = text.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()); break;
-                    case 'camelCase': result = text.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => index === 0 ? word.toLowerCase() : word.toUpperCase()).replace(/\s+/g, ''); break;
-                    case 'snakeCase': result = text.trim().toLowerCase().replace(/\s+/g, '_'); break;
-                    case 'reverseText': result = text.split('').reverse().join(''); break;
-                    case 'reverseWords': result = text.split(/\s+/).reverse().join(' '); break;
-                    case 'reverseLines': result = text.split('\n').reverse().join('\n'); break;
-                    case 'shuffleLines': result = shuffleArray(text.split('\n')).join('\n'); break;
-                    case 'sortLines': result = text.split('\n').sort((a, b) => a.localeCompare(b, 'sv')).join('\n'); break;
-                    case 'removeExtraSpaces': result = text.replace(/\s+/g, ' ').trim(); break;
-                    case 'removeEmptyLines': result = text.split('\n').filter(line => line.trim() !== '').join('\n'); break;
-                    case 'removeDuplicateLines': result = [...new Set(text.split('\n'))].join('\n'); break;
-                    case 'removeHtmlTags': result = text.replace(/<[^>]*>/g, ''); break;
-                    case 'trimLines': result = text.split('\n').map(line => line.trim()).join('\n'); break;
-                    case 'addLineNumbers': result = text.split('\n').map((line, index) => `${index + 1}. ${line}`).join('\n'); break;
-                    case 'extractEmails': showInResults = true; result = [...new Set(text.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi) || [])].join('\n'); break;
-                    case 'extractUrls': showInResults = true; result = [...new Set(text.match(/(https?:\/\/[^\s]+)/g) || [])].join('\n'); break;
-                    case 'extractNumbers': showInResults = true; result = [...new Set(text.match(/\d+/g) || [])].join('\n'); break;
-                    case 'wordFrequency': showInResults = true; result = getWordFrequency(text); break;
-                    case 'replaceAll': result = performReplace(text, searchText, replaceText, caseSensitive, useRegex); break;
-                    case 'highlightMatches': showInResults = true; result = highlightMatches(text, searchText, caseSensitive, useRegex); break;
-                    case 'compareTexts': showInResults = true; result = compareTexts(text, document.getElementById('compareText').value); break;
-                    default: showFeedback('Okänd åtgärd!', 'error'); return;
+                function getWordFrequency(text) {
+                    const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+                    const frequency = words.reduce((acc, word) => {
+                        acc[word] = (acc[word] || 0) + 1;
+                        return acc;
+                    }, {});
+                    return Object.entries(frequency).sort((a, b) => b[1] - a[1]).map(([word, count]) => `${word}: ${count}`).join('\n');
                 }
-                
-                if (showInResults) {
-                    showResults(result);
-                } else {
-                    inputText.value = result;
-                    updateStats();
-                }
-                showFeedback('Åtgärd utförd!', 'success');
-            }
 
-            function getWordFrequency(text) {
-                const words = text.toLowerCase().match(/\b\w+\b/g) || [];
-                const frequency = words.reduce((acc, word) => {
-                    acc[word] = (acc[word] || 0) + 1;
-                    return acc;
-                }, {});
-                return Object.entries(frequency).sort((a, b) => b[1] - a[1]).map(([word, count]) => `${word}: ${count}`).join('\n');
-            }
-
-            function performReplace(text, search, replace, caseSens, isRegex) {
-                if (!search) return text;
-                try {
-                    const flags = caseSens ? 'g' : 'gi';
-                    const regex = isRegex ? new RegExp(search, flags) : new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), flags);
-                    return text.replace(regex, replace);
-                } catch (e) {
-                    showFeedback('Ogiltigt Regex!', 'error');
-                    return text;
-                }
-            }
-            
-            function highlightMatches(text, search, caseSens, isRegex) {
-                if (!search) return text;
-                 try {
-                    const flags = caseSens ? 'g' : 'gi';
-                    const regex = isRegex ? new RegExp(search, flags) : new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), flags);
-                    return text.replace(regex, '<mark>$&</mark>');
-                } catch (e) {
-                    showFeedback('Ogiltigt Regex!', 'error');
-                    return text;
-                }
-            }
-            
-            function compareTexts(text1, text2) {
-                if (!text2.trim()) return 'Ange text att jämföra med.';
-                const dmp = new diff_match_patch();
-                const diff = dmp.diff_main(text1, text2);
-                dmp.diff_cleanupSemantic(diff);
-                return dmp.diff_prettyHtml(diff).replace(/&para;/g, '');
-            }
-
-            function shuffleArray(array) {
-                for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [array[i], array[j]] = [array[j], array[i]];
-                }
-                return array;
-            }
-
-            function updateStats() {
-                const text = inputText.value;
-                const words = text.trim().split(/\s+/).filter(Boolean);
-                const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
-                wordCount.textContent = words.length;
-                charCount.textContent = text.length;
-                charCountNoSpaces.textContent = text.replace(/\s/g, '').length;
-                lineCount.textContent = text.split('\n').length;
-                paragraphCount.textContent = text.split(/\n\s*\n/).filter(Boolean).length;
-                sentenceCount.textContent = sentences.length;
-                avgWordLength.textContent = words.length ? (text.replace(/\s/g, '').length / words.length).toFixed(1) : 0;
-                readabilityScore.textContent = calculateReadability(words.length, sentences.length, countSyllables(text));
-            }
-            
-            function calculateReadability(words, sentences, syllables) {
-                 if (words < 30 || sentences === 0) return '-';
-                 const score = 206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words);
-                 return Math.round(Math.max(0, Math.min(100, score)));
-            }
-            
-            function countSyllables(text) {
-                text = text.toLowerCase();
-                if(text.length <= 3) { return 1; }
-                text = text.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
-                text = text.replace(/^y/, '');
-                const matches = text.match(/[aeiouy]{1,2}/g);
-                return matches ? matches.length : 0;
-            }
-
-            function saveToHistory() {
-                const currentText = inputText.value;
-                if (textHistory[currentHistoryIndex] !== currentText) {
-                    textHistory = textHistory.slice(0, currentHistoryIndex + 1);
-                    textHistory.push(currentText);
-                    currentHistoryIndex++;
-                     if (textHistory.length > 30) {
-                        textHistory.shift();
-                        currentHistoryIndex--;
+                function performReplace(text, search, replace, caseSens, isRegex) {
+                    if (!search) return text;
+                    try {
+                        const flags = caseSens ? 'g' : 'gi';
+                        const regex = isRegex ? new RegExp(search, flags) : new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), flags);
+                        return text.replace(regex, replace);
+                    } catch (e) {
+                        showFeedback('Ogiltigt Regex!', 'error');
+                        return text;
                     }
                 }
-            }
+                
+                function highlightMatches(text, search, caseSens, isRegex) {
+                    if (!search) return text;
+                     try {
+                        const flags = caseSens ? 'g' : 'gi';
+                        const regex = isRegex ? new RegExp(search, flags) : new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), flags);
+                        return text.replace(regex, '<mark>$&</mark>');
+                    } catch (e) {
+                        showFeedback('Ogiltigt Regex!', 'error');
+                        return text;
+                    }
+                }
+                
+                function compareTexts(text1, text2) {
+                    if (typeof diff_match_patch === 'undefined') {
+                        showFeedback('Jämförelsebiblioteket kunde inte laddas.', 'error');
+                        return 'Fel vid laddning av funktion.';
+                    }
+                    if (!text2.trim()) {
+                        showFeedback('Ange text att jämföra med.', 'error');
+                        return 'Ingen jämförelsetext angiven.';
+                    }
+                    const dmp = new diff_match_patch();
+                    const diff = dmp.diff_main(text1, text2);
+                    dmp.diff_cleanupSemantic(diff);
+                    return dmp.diff_prettyHtml(diff).replace(/&para;/g, '');
+                }
 
-            function undo() {
-                if (currentHistoryIndex > 0) {
-                    currentHistoryIndex--;
-                    inputText.value = textHistory[currentHistoryIndex];
+                function shuffleArray(array) {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                    return array;
+                }
+
+                function updateStats() {
+                    const text = inputText.value;
+                    const words = text.trim().split(/\s+/).filter(Boolean);
+                    const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+                    wordCount.textContent = words.length;
+                    charCount.textContent = text.length;
+                    charCountNoSpaces.textContent = text.replace(/\s/g, '').length;
+                    lineCount.textContent = text.split('\n').length;
+                    paragraphCount.textContent = text.split(/\n\s*\n/).filter(Boolean).length;
+                    sentenceCount.textContent = sentences.length;
+                    avgWordLength.textContent = words.length ? (text.replace(/\s/g, '').length / words.length).toFixed(1) : 0;
+                    readabilityScore.textContent = calculateReadability(words.length, sentences.length, countSyllables(text));
+                }
+                
+                function calculateReadability(words, sentences, syllables) {
+                     if (words < 30 || sentences === 0) return '-';
+                     const score = 206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words);
+                     return Math.round(Math.max(0, Math.min(100, score)));
+                }
+                
+                function countSyllables(text) {
+                    text = text.toLowerCase();
+                    if(text.length <= 3) { return 1; }
+                    text = text.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+                    text = text.replace(/^y/, '');
+                    const matches = text.match(/[aeiouyåäö]{1,2}/g);
+                    return matches ? matches.length : 0;
+                }
+
+                function saveToHistory() {
+                    const currentText = inputText.value;
+                    if (textHistory[currentHistoryIndex] !== currentText) {
+                        textHistory = textHistory.slice(0, currentHistoryIndex + 1);
+                        textHistory.push(currentText);
+                        currentHistoryIndex++;
+                         if (textHistory.length > 30) {
+                            textHistory.shift();
+                            currentHistoryIndex--;
+                        }
+                    }
+                }
+
+                function undo() {
+                    if (currentHistoryIndex > 0) {
+                        currentHistoryIndex--;
+                        inputText.value = textHistory[currentHistoryIndex];
+                        updateStats();
+                        showFeedback('Ångrad!', 'info');
+                    } else {
+                        showFeedback('Inget mer att ångra!', 'error');
+                    }
+                }
+
+                function clearAll() {
+                    saveToHistory();
+                    inputText.value = '';
                     updateStats();
-                    showFeedback('Ångrad!', 'info');
-                } else {
-                    showFeedback('Inget mer att ångra!', 'error');
+                    clearResults();
+                    showFeedback('Allt rensat!', 'info');
                 }
-            }
 
-            function clearAll() {
-                saveToHistory();
-                inputText.value = '';
-                updateStats();
-                clearResults();
-                showFeedback('Allt rensat!', 'info');
-            }
-
-            function copyText() {
-                if (!inputText.value) {
-                    showFeedback('Inget att kopiera!', 'error');
-                    return;
+                function copyText() {
+                    if (!inputText.value) {
+                        showFeedback('Inget att kopiera!', 'error');
+                        return;
+                    }
+                    navigator.clipboard.writeText(inputText.value).then(() => {
+                        showFeedback('Text kopierad!', 'success');
+                    }, () => {
+                        showFeedback('Kopiering misslyckades', 'error');
+                    });
                 }
-                navigator.clipboard.writeText(inputText.value).then(() => {
-                    showFeedback('Text kopierad!', 'success');
-                }, () => {
-                    showFeedback('Kopiering misslyckades', 'error');
-                });
-            }
 
-            function showResults(content) {
-                resultsContent.innerHTML = content;
-                resultsContainer.style.display = 'block';
-            }
+                function showResults(content) {
+                    resultsContent.innerHTML = content;
+                    resultsContainer.style.display = 'block';
+                }
 
-            function clearResults() {
-                resultsContainer.style.display = 'none';
-                resultsContent.innerHTML = '';
-            }
-            
-            let feedbackTimeout;
-            function showFeedback(message, type) {
-                clearTimeout(feedbackTimeout);
-                feedback.textContent = message;
-                feedback.className = `feedback ${type} show`;
-                feedbackTimeout = setTimeout(() => {
-                    feedback.classList.remove('show');
-                }, 3000);
+                function clearResults() {
+                    resultsContainer.style.display = 'none';
+                    resultsContent.innerHTML = '';
+                }
+                
+                let feedbackTimeout;
+                function showFeedback(message, type) {
+                    clearTimeout(feedbackTimeout);
+                    feedback.textContent = message;
+                    feedback.className = `feedback ${type} show`;
+                    feedbackTimeout = setTimeout(() => {
+                        feedback.classList.remove('show');
+                    }, 3000);
+                }
+            } catch (e) {
+                console.error("Ett kritiskt fel inträffade vid sidladdning:", e);
+                // Valfritt: Visa ett felmeddelande för användaren på själva sidan.
+                // document.body.innerHTML = 'Ett fel har inträffat. Försök att ladda om sidan.';
             }
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js" defer></script>
 </body>
 </html>
