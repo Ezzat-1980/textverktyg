@@ -25,7 +25,6 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
-            /* FÖRENKLAD BAKGRUND */
             background-color: #f0f4f8; 
             min-height: 100vh;
         }
@@ -34,22 +33,15 @@
             margin: 0 auto;
             padding: 20px;
         }
-        /* Gemensam stil för alla "kort" */
         .card {
-            /* FÖRENKLAD DESIGN - Ingen glaseffekt */
             background-color: #ffffff;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
         }
-        .main-content {
+        .main-content, .tools-section {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0; /* Använder card's margin istället */
-        }
-        .tools-section {
-             display: grid;
             grid-template-columns: 1fr;
             gap: 0;
         }
@@ -62,13 +54,13 @@
             margin-bottom: 10px;
         }
         .subtitle {
-    font-size: 1.2rem;
-    color: #555; /* Ändrad från #7f8c8d */
-    font-weight: 300;
+            font-size: 1.2rem;
+            color: #4a4a4a; /* JUSTERAD FÖR KONTRAST */
+            font-weight: 300;
         }
-        .about-section h2 {
+        .about-section h2, .stats-section h2, .tool-category h2 {
             color: #2c3e50;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-size: 1.5rem;
             border-bottom: 2px solid #e0e6ed;
             padding-bottom: 10px;
@@ -103,13 +95,6 @@
             border-radius: 10px; 
             border-left: 4px solid #667eea; 
         }
-        .stats-section h2, .tool-category h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #e0e6ed;
-            padding-bottom: 10px;
-        }
         .stats-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -124,7 +109,10 @@
             border-radius: 8px; 
             border-left: 4px solid #667eea; 
         }
-        .stat-label { font-weight: 500; color: #555; }
+        .stat-label { 
+            font-weight: 500; 
+            color: #4a4a4a; /* JUSTERAD FÖR KONTRAST */
+        }
         .stat-value { font-weight: bold; color: #2c3e50; font-size: 1.1rem; }
         .tool-buttons { 
             display: flex; 
@@ -148,7 +136,9 @@
             text-align: center; 
             margin-top: 20px;
             padding: 20px;
-            color: #6c757d;
+        }
+        footer p {
+             color: #4a4a4a; /* JUSTERAD FÖR KONTRAST */
         }
         .social-share { 
             display: flex; 
@@ -246,21 +236,19 @@
     
     <script>
         // Hela din fullständiga Javascript-kod är här
+        // Denna kod är förkortad för läsbarhet, den fullständiga koden från föregående versioner ska användas
         function shareOnSocialMedia(platform) { /* ... */ }
         document.addEventListener('DOMContentLoaded', function() {
             // ... all din kod ...
-            const inputText = document.getElementById('inputText');
-            // ... resten av dina variabel-deklarationer ...
-            
-            // ... alla dina funktioner (updateStats, executeAction etc.) ...
             function compareTexts(text1, text2) {
                 if (typeof diff_match_patch === 'undefined') {
-                    // showFeedback funktion kan behöva definieras här om den inte är global
-                    console.log('Jämförelsebiblioteket kunde inte laddas.');
+                    console.error('Jämförelsebiblioteket kunde inte laddas.');
+                    // showFeedback('Jämförelsebiblioteket kunde inte laddas.', 'error');
                     return 'Fel vid laddning av funktion.';
                 }
                 // ... resten av compareTexts funktionen
             }
+            // ... resten av din JS ...
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js" defer></script>
