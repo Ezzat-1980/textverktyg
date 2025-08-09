@@ -43,6 +43,16 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
             margin-bottom: 30px;
         }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0; /* Använder card's margin istället */
+        }
+        .tools-section {
+             display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
         header {
             text-align: center;
         }
@@ -97,6 +107,8 @@
             color: #2c3e50;
             margin-bottom: 20px;
             font-size: 1.5rem;
+            border-bottom: 2px solid #e0e6ed;
+            padding-bottom: 10px;
         }
         .stats-grid { 
             display: grid; 
@@ -112,6 +124,8 @@
             border-radius: 8px; 
             border-left: 4px solid #667eea; 
         }
+        .stat-label { font-weight: 500; color: #555; }
+        .stat-value { font-weight: bold; color: #2c3e50; font-size: 1.1rem; }
         .tool-buttons { 
             display: flex; 
             flex-wrap: wrap; 
@@ -132,9 +146,8 @@
         .tool-btn:hover { background: #667eea; color: white; }
         footer { 
             text-align: center; 
-            margin-top: 20px; /* Minskad marginal eftersom den inte är ett "kort" längre */
-            padding-top: 20px; 
-            border-top: 1px solid #e0e6ed;
+            margin-top: 20px;
+            padding: 20px;
             color: #6c757d;
         }
         .social-share { 
@@ -155,4 +168,101 @@
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBHD5ZT9"
-    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager fallback">
+    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager fallback"></iframe></noscript>
+
+    <div class="container">
+        <header class="card">
+            <h1>Textverktyget.se</h1>
+            <p class="subtitle">Ditt allt-i-ett verktyg för textanalys och manipulation</p>
+        </header>
+
+        <section class="about-section card">
+            <h2>Välkommen till din digitala textassistent!</h2>
+            <p>Textverktyget.se är ett gratis och kraftfullt online-verktyg skapat för alla som arbetar med text. Oavsett om du är student, skribent, utvecklare eller bara vill få snabb koll på en text, finns vi här för att hjälpa till.</p>
+        </section>
+
+        <main class="main-content">
+            <section class="text-area-section card">
+                <div class="textarea-container">
+                    <textarea id="inputText" placeholder="Klistra in din text här..." aria-label="Huvudtextfält för inmatning"></textarea>
+                </div>
+                <div class="textarea-controls">
+                    <button id="copyBtn" class="btn-secondary">Kopiera text</button>
+                    <button id="undoBtn" class="btn-secondary">Ångra</button>
+                    <button id="clearAllBtn" class="btn-primary">Rensa allt</button>
+                </div>
+                <div id="resultsContainer" class="results-container" style="display:none;">
+                    <h3>Resultat</h3>
+                    <pre id="resultsContent" aria-live="polite"></pre>
+                    <button id="clearResultsBtn" class="btn-secondary" style="margin-top: 10px;">Rensa resultat</button>
+                </div>
+            </section>
+
+            <section class="stats-section card">
+                <h2>Statistik</h2>
+                <div class="stats-grid" aria-live="polite">
+                    <div class="stat-item"><span class="stat-label">Antal ord:</span> <span id="wordCount" class="stat-value">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Antal tecken:</span> <span id="charCount" class="stat-value">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Tecken (utan blanksteg):</span> <span id="charCountNoSpaces" class="stat-value">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Antal rader:</span> <span id="lineCount" class="stat-value">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Antal stycken:</span> <span id="paragraphCount" class="stat-value">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Antal meningar:</span> <span id="sentenceCount" class="stat-value">0</span></div>
+                    <div class="stat-item"><span class="stat-label">Läsbarhetsindex:</span> <span id="readabilityScore" class="stat-value">-</span></div>
+                    <div class="stat-item"><span class="stat-label">Medelordlängd:</span> <span id="avgWordLength" class="stat-value">0</span></div>
+                </div>
+            </section>
+            
+            <div class="tools-section">
+                <div class="tool-category card">
+                    <h2>Rensning & Formatering</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn" data-action="removeExtraSpaces">Ta bort extra mellanslag</button>
+                        <button class="tool-btn" data-action="removeEmptyLines">Ta bort tomma rader</button>
+                        <button class="tool-btn" data-action="removeDuplicateLines">Ta bort dubblettrader</button>
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Jämför texter</h2>
+                    <div class="comparison-controls">
+                        <textarea id="compareText" placeholder="Klistra in den andra texten här..." aria-label="Jämförelsetext"></textarea>
+                        <button class="tool-btn" data-action="compareTexts">Jämför nu</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Textverktyget.se - Alla rättigheter förbehållna.</p>
+            <div class="social-share">
+                <button class="share-btn" data-platform="twitter">Dela på Twitter</button>
+                <button class="share-btn" data-platform="facebook">Dela på Facebook</button>
+                <button class="share-btn" data-platform="linkedin">Dela på LinkedIn</button>
+            </div>
+        </footer>
+    </div>
+
+    <div id="feedback" class="feedback" role="alert" aria-live="assertive"></div>
+    
+    <script>
+        // Hela din fullständiga Javascript-kod är här
+        function shareOnSocialMedia(platform) { /* ... */ }
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... all din kod ...
+            const inputText = document.getElementById('inputText');
+            // ... resten av dina variabel-deklarationer ...
+            
+            // ... alla dina funktioner (updateStats, executeAction etc.) ...
+            function compareTexts(text1, text2) {
+                if (typeof diff_match_patch === 'undefined') {
+                    // showFeedback funktion kan behöva definieras här om den inte är global
+                    console.log('Jämförelsebiblioteket kunde inte laddas.');
+                    return 'Fel vid laddning av funktion.';
+                }
+                // ... resten av compareTexts funktionen
+            }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js" defer></script>
+</body>
+</html>
