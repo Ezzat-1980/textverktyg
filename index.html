@@ -6,11 +6,11 @@
     <title>Textverktyget.se - Din Allt-i-ett Textanalysator</title>
     <meta name="description" content="Gratis online-verktyg för avancerad textanalys, ordräknare, stavningskontroll, omvandling, rensning, extrahering, sök/ersätt och textgenerering.">
     
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KBHD5ZT9');</script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
+    new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=
+    \'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,\'script\',\'dataLayer\',\'GTM-KBHD5ZT9\');</script>
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6696113059842943"
          crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
             background-color: #f0f4f8; 
@@ -78,7 +78,7 @@
             border: 2px solid #e0e6ed;
             border-radius: 10px;
             font-size: 16px;
-            font-family: 'Courier New', monospace;
+            font-family: \'Courier New\', monospace;
             resize: vertical;
             background: #fafbfc;
         }
@@ -167,8 +167,8 @@
         </header>
 
         <section class="about-section card">
-            <h2>Välkommen till din digitala textassistent!</h2>
-            <p>Textverktyget.se är ett gratis och kraftfullt online-verktyg skapat för alla som arbetar med text. Oavsett om du är student, skribent, utvecklare eller bara vill få snabb koll på en text, finns vi här för att hjälpa till.</p>
+            <h2>Välkommen till Textverktyget.se – Din Allt-i-ett Textanalysator</h2>
+            <p>Oavsett om du är student, skribent, marknadsförare eller bara behöver snabba textverktyg, erbjuder Textverktyget.se en rad kraftfulla funktioner för att hjälpa dig med dina textrelaterade uppgifter. Från detaljerad statistik till avancerad formatering och konvertering, gör vi det enkelt att hantera din text effektivt och professionellt.</p>
         </section>
 
         <main class="main-content">
@@ -204,11 +204,112 @@
             
             <div class="tools-section">
                 <div class="tool-category card">
-                    <h2>Rensning & Formatering</h2>
+                    <h2>Textomvandling</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn" data-action="uppercase">VERSALER</button>
+                        <button class="tool-btn" data-action="lowercase">gemener</button>
+                        <button class="tool-btn" data-action="sentenceCase">Meningsform</button>
+                        <button class="tool-btn" data-action="titleCase">Titelform</button>
+                        <button class="tool-btn" data-action="camelCase">camelCase</button>
+                        <button class="tool-btn" data-action="kebabCase">kebab-case</button>
+                        <button class="tool-btn" data-action="snakeCase">snake_case</button>
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Textmanipulation</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn" data-action="reverseText">Vänd text</button>
+                        <button class="tool-btn" data-action="reverseWords">Vänd ord</button>
+                        <button class="tool-btn" data-action="reverseLines">Vänd rader</button>
+                        <button class="tool-btn" data-action="shuffleWords">Blanda ord</button>
+                        <button class="tool-btn" data-action="shuffleLines">Blanda rader</button>
+                        <button class="tool-btn" data-action="sortLines">Sortera rader</button>
+                        <button class="tool-btn" data-action="sortLinesDesc">Sortera rader (fallande)</button>
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Textrensning</h2>
                     <div class="tool-buttons">
                         <button class="tool-btn" data-action="removeExtraSpaces">Ta bort extra mellanslag</button>
                         <button class="tool-btn" data-action="removeEmptyLines">Ta bort tomma rader</button>
-                        <button class="tool-btn" data-action="removeDuplicateLines">Ta bort dubblettrader</button>
+                        <button class="tool-btn" data-action="removeNumbers">Ta bort siffror</button>
+                        <button class="tool-btn" data-action="removeDuplicateLines">Ta bort dubbletter</button>
+                        <button class="tool-btn" data-action="removeSpecialChars">Ta bort specialtecken</button>
+                        <button class="tool-btn" data-action="removeHtmlTags">Ta bort HTML-taggar</button>
+                        <button class="tool-btn" data-action="trimLines">Trimma rader</button>
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Textformatering</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn" data-action="addLineNumbers">Lägg till radnummer</button>
+                        <button class="tool-btn" data-action="addBulletPoints">Lägg till punkter</button>
+                        <button class="tool-btn" data-action="addNumberedList">Numrerad lista</button>
+                        <button class="tool-btn" data-action="indentText">Indentera text</button>
+                        <button class="tool-btn" data-action="wrapText">Radbryt text</button>
+                        <button class="tool-btn" data-action="addPrefixSuffix">Lägg till prefix/suffix</button>
+                    </div>
+                    <div class="prefix-suffix-controls">
+                        <input type="text" id="prefixInput" placeholder="Prefix">
+                        <input type="text" id="suffixInput" placeholder="Suffix">
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Konvertering</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn" data-action="toBase64">Till Base64</button>
+                        <button class="tool-btn" data-action="fromBase64">Från Base64</button>
+                        <button class="tool-btn" data-action="urlEncode">URL-koda</button>
+                        <button class="tool-btn" data-action="urlDecode">URL-avkoda</button>
+                        <button class="tool-btn" data-action="toHtml">Till HTML</button>
+                        <button class="tool-btn" data-action="fromHtml">Från HTML</button>
+                        <button class="tool-btn" data-action="toJson">Till JSON</button>
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Extrahera & Filtrera</h2>
+                    <div class="tool-buttons">
+                        <button class="tool-btn" data-action="extractEmails">Extrahera e-post</button>
+                        <button class="tool-btn" data-action="extractUrls">Extrahera URL:er</button>
+                        <button class="tool-btn" data-action="extractNumbers">Extrahera siffror</button>
+                        <button class="tool-btn" data-action="extractPhoneNumbers">Extrahera telefonnummer</button>
+                        <button class="tool-btn" data-action="uniqueWords">Unika ord</button>
+                        <button class="tool-btn" data-action="wordFrequency">Ordfrekvens</button>
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Sök och Ersätt</h2>
+                    <div class="search-replace-controls">
+                        <input type="text" id="searchText" placeholder="Sök efter..." aria-label="Söktext">
+                        <input type="text" id="replaceText" placeholder="Ersätt med..." aria-label="Ersättningstext">
+                        <div class="search-options">
+                            <label><input type="checkbox" id="caseSensitive"> Skiftlägeskänslig</label>
+                            <label><input type="checkbox" id="useRegex"> Använd regex</label>
+                        </div>
+                        <button class="tool-btn" data-action="replaceAll">Ersätt alla</button>
+                        <button class="tool-btn" data-action="highlightMatches">Markera träffar</button>
+                    </div>
+                </div>
+
+                <div class="tool-category card">
+                    <h2>Textgenerering</h2>
+                    <div class="generator-controls">
+                        <div class="generator-item">
+                            <label for="loremWords">Lorem Ipsum (ord):</label>
+                            <input type="number" id="loremWords" value="50" min="1">
+                            <button class="tool-btn" data-action="generateLorem">Generera Lorem</button>
+                        </div>
+                        <div class="generator-item">
+                            <label for="randomWordsCount">Slumpmässiga ord (antal):</label>
+                            <input type="number" id="randomWordsCount" value="10" min="1">
+                            <button class="tool-btn" data-action="generateRandomWords">Generera ord</button>
+                        </div>
                     </div>
                 </div>
 
@@ -222,35 +323,7 @@
             </div>
         </main>
 
-        <footer>
-            <p>&copy; 2025 Textverktyget.se - Alla rättigheter förbehållna.</p>
-            <div class="social-share">
-                <button class="share-btn" data-platform="twitter">Dela på Twitter</button>
-                <button class="share-btn" data-platform="facebook">Dela på Facebook</button>
-                <button class="share-btn" data-platform="linkedin">Dela på LinkedIn</button>
-            </div>
-        </footer>
-    </div>
-
-    <div id="feedback" class="feedback" role="alert" aria-live="assertive"></div>
-    
-    <script>
-        // Hela din fullständiga Javascript-kod är här
-        // Denna kod är förkortad för läsbarhet, den fullständiga koden från föregående versioner ska användas
-        function shareOnSocialMedia(platform) { /* ... */ }
-        document.addEventListener('DOMContentLoaded', function() {
-            // ... all din kod ...
-            function compareTexts(text1, text2) {
-                if (typeof diff_match_patch === 'undefined') {
-                    console.error('Jämförelsebiblioteket kunde inte laddas.');
-                    // showFeedback('Jämförelsebiblioteket kunde inte laddas.', 'error');
-                    return 'Fel vid laddning av funktion.';
-                }
-                // ... resten av compareTexts funktionen
-            }
-            // ... resten av din JS ...
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js" defer></script>
-</body>
-</html>
+        <section class="about-section card">
+            <h2>Användningsområden</h2>
+            <p><strong>För studenter:</strong> Använd Textverktyget.se för att snabbt kontrollera ordantalet i up
+(Content truncated due to size limit. Use page ranges or line ranges to read remaining content)
