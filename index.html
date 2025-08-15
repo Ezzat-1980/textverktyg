@@ -155,7 +155,44 @@
             border: none; 
             border-radius: 8px; 
             cursor: pointer; 
-        }
+      /* Added color enhancements for improved visuals */
+    :root {
+        --primary-color: #2c5282;
+        --secondary-color: #38b2ac;
+        --background-color: #f7fafc;
+        --card-background: #ffffff;
+        --text-color: #2d3748;
+    }
+    body {
+        color: var(--text-color);
+        background-color: var(--background-color);
+    }
+    .card {
+        background-color: var(--card-background);
+    }
+    .results-container {
+        border-left: 4px solid var(--primary-color);
+    }
+    .stat-item {
+        border-left: 4px solid var(--secondary-color);
+    }
+    .btn-primary {
+        background: var(--primary-color);
+        color: #fff;
+    }
+    .btn-secondary {
+        background: var(--secondary-color);
+        color: #fff;
+    }
+    .tool-btn:hover {
+        background: var(--primary-color);
+        color: #fff;
+    }
+    .share-btn {
+        background: var(--primary-color);
+        color: #fff;
+    }
+      }
     </style>
 </head>
 <body>
@@ -330,3 +367,4 @@
             <p><strong>För studenter:</strong> Använd Textverktyget.se för att snabbt kontrollera ordantalet i up
 
 (Content truncated due to size limit. Use page ranges or line ranges to read remaining content)
+
