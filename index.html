@@ -1,239 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W2WHVJLHP"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0W2WHVJLHP');
-  </script>
-
-  <title>Ordräknare & Textanalys på Svenska – Gratis Onlineverktyg</title>
-  <meta name="description" content="Gratis svensk ordräknare och textanalys. Räkna ord, tecken och meningar direkt online. Perfekt för studenter, skribenter och lärare." />
-  <meta name="keywords" content="ordräknare svenska, textanalys, räkna ord, gratis verktyg, ordräknare online, svenska textverktyg" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Ordräknare & Textanalys på Svenska – Gratis Onlineverktyg" />
-  <meta property="og:description" content="Behöver du räkna ord eller analysera text på svenska? Testa vårt gratis verktyg online. Perfekt för studier och skrivande." />
-  <meta property="og:url" content="https://textverktyget.se/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="sv_SE" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Ordräknare & Textanalys på Svenska – Gratis Onlineverktyg" />
-  <meta name="twitter:description" content="Gratis verktyg för att räkna ord och analysera texter på svenska. Enkelt och snabbt online." />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ordräknare & Textanalys på svenska – Gratis | Textverktyget</title>
+  <meta name="description" content="Räkna ord, tecken, meningar, stycken, LIX och lästid. Allt sker lokalt i din webbläsare. Ingen lagring.">
+  <meta property="og:title" content="Textverktyget – Ordräknare & Textanalys">
+  <meta property="og:description" content="Gratis, privat och snabbt. LIX, lästid, export till JSON/CSV.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://textverktyget.se/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://textverktyget.se/">
   <style>
-    :root{
-      --primary:#2c5282; /* blå */
-      --secondary:#38b2ac; /* turkos */
-      --bg:#f7fafc; /* ljus bakgrund */
-      --card:#ffffff; 
-      --text:#2d3748; /* mörk grå */
-      --muted:#718096;
-      --ring:#e2e8f0;
+    :root { --gap:12px; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial; margin: 0; }
+    header { position: sticky; top:0; background:#fff; border-bottom:1px solid #eee; padding:10px 16px; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .trust { font-size:.9rem; color:#0a0; }
+    h1 { margin: 0; }
+    textarea { width:100%; min-height:260px; padding:12px; font:14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; border:1px solid #ddd; border-radius:10px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: var(--gap); margin-top: var(--gap); }
+    .card { border:1px solid #eee; border-radius:12px; padding:12px; }
+    .card h3 { margin:0 0 6px; font-size:.95rem; }
+    .toolbar { display:flex; flex-wrap:wrap; gap: var(--gap); margin-top: var(--gap); }
+    button { padding:8px 10px; border:1px solid #ddd; border-radius:10px; background:#fafafa; cursor:pointer; }
+    .sr-only { position:absolute; left:-9999px; }
+    @media (prefers-color-scheme: dark){
+      body{ background:#0b0b0b; color:#eaeaea }
+      header{ background:#0b0b0b; border-color:#222 }
+      textarea{ background:#111; color:#eaeaea; border:1px solid #222 }
+      .card{ border-color:#222; background:#0f0f0f }
+      button{ background:#111; border-color:#222; color:#eaeaea }
+      .trust{ color:#8fdd8f }
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-      line-height:1.6; color:var(--text); background:var(--bg);
-    }
-    a{color:var(--primary); text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    header{
-      position:sticky; top:0; z-index:50; background:rgba(247,250,252,.9);
-      backdrop-filter:saturate(180%) blur(6px); border-bottom:1px solid var(--ring);
-    }
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px;}
-    .brand{display:flex; align-items:center; gap:10px}
-    .logo{width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg,var(--primary),var(--secondary));}
-    .title{font-weight:700; letter-spacing:.2px}
-    .menu{display:flex; gap:14px; flex-wrap:wrap}
-
-    .hero{padding:32px 0 16px}
-    .hero h1{font-size:clamp(28px,3.3vw,40px); margin:0 0 8px}
-    .hero p{color:var(--muted); margin:0}
-
-    .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:20px}
-    @media (max-width: 900px){.grid{grid-template-columns:1fr}}
-
-    .card{background:var(--card); border:1px solid var(--ring); border-radius:14px; padding:18px; box-shadow:0 2px 10px rgba(0,0,0,.04)}
-    .card h2{margin-top:0}
-
-    textarea{
-      width:100%; min-height:220px; resize:vertical;
-      padding:12px; border:1px solid var(--ring); border-radius:10px; 
-      font: inherit; background:#fff; color:var(--text);
-    }
-    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
-    .btn{appearance:none; border:0; border-radius:10px; padding:10px 14px; cursor:pointer; font-weight:600}
-    .btn-primary{background:var(--primary); color:#fff}
-    .btn-secondary{background:var(--secondary); color:#05323a}
-    .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
-    @media (max-width:700px){.stat-row{grid-template-columns:1fr 1fr}}
-    .stat{padding:12px;border:1px solid var(--ring);border-radius:10px;background:#fff}
-    .stat .k{font-size:22px;font-weight:700}
-    .muted{color:var(--muted)}
-
-    .section{margin-top:28px}
-    .section h2{margin:.2rem 0 .6rem}
-
-    .social-share{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
-    .share-btn{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; border:1px solid var(--ring); background:#fff; font-weight:600}
-    .share-btn:hover{box-shadow:0 2px 6px rgba(0,0,0,.06)}
-
-    footer{margin-top:36px; padding:24px 0; border-top:1px solid var(--ring); color:var(--muted)}
   </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Textverktyget",
+   "url":"https://textverktyget.se/","applicationCategory":"Utilities","operatingSystem":"Web"}
+  </script>
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div class="title">Textverktyget.se</div>
-      </div>
-      <nav class="menu" aria-label="Huvudmeny">
-        <a href="#verktyg">Verktyg</a>
-        <a href="#om-oss">Om oss</a>
-        <a href="#anvandning">Hur man använder</a>
-        <a href="#integritet">Integritet</a>
-      </nav>
+    <div class="wrap">
+      <h1>Textverktyget</h1>
+      <div class="trust" aria-live="polite">Allt kör lokalt i din webbläsare. Ingen text skickas eller lagras.</div>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero" id="verktyg">
-      <h1>Gratis ordräknare & textanalys på svenska</h1>
-      <p>Klistra in texten nedan och klicka på Analysera – perfekt för studier, uppsatser och innehållsarbete.</p>
+  <main class="wrap" role="main">
+    <label for="input" class="sr-only">Text att analysera</label>
+    <textarea id="input" placeholder="Klistra in eller skriv din text här…"></textarea>
+
+    <section class="grid" aria-label="Resultat">
+      <div class="card"><h3>Ord</h3><div id="res-words">0</div></div>
+      <div class="card"><h3>Tecken</h3><div id="res-chars">0</div></div>
+      <div class="card"><h3>Tecken utan blanksteg</h3><div id="res-chars-ns">0</div></div>
+      <div class="card"><h3>Meningar</h3><div id="res-sentences">0</div></div>
+      <div class="card"><h3>Stycken</h3><div id="res-paras">0</div></div>
+      <div class="card"><h3>Gen. meningslängd</h3><div id="res-avg-sent">0</div></div>
+      <div class="card"><h3>LIX</h3><div id="res-lix">0</div></div>
+      <div class="card"><h3>Lästid</h3><div id="res-read">0 min</div></div>
     </section>
 
-    <div class="grid">
-      <!-- Vänster kolumn: Textinmatning + knappar -->
-      <section class="card">
-        <h2>Analysera text</h2>
-        <textarea id="inputText" placeholder="Klistra in eller skriv din text här…"></textarea>
-        <div class="row" style="margin-top:10px">
-          <button class="btn btn-primary" id="analyzeBtn">Analysera</button>
-          <button class="btn btn-secondary" id="clearBtn">Rensa</button>
-        </div>
-        <div class="social-share" id="shareBox"></div>
-      </section>
-
-      <!-- Höger kolumn: Resultat -->
-      <aside class="card">
-        <h2>Resultat</h2>
-        <div class="stat-row">
-          <div class="stat"><div class="k" id="words">0</div><div class="muted">Ord</div></div>
-          <div class="stat"><div class="k" id="chars">0</div><div class="muted">Tecken</div></div>
-          <div class="stat"><div class="k" id="sentences">0</div><div class="muted">Meningar</div></div>
-        </div>
-      </aside>
+    <div class="toolbar" role="group" aria-label="Verktyg">
+      <button id="btn-copy">Kopiera resultat</button>
+      <button id="btn-json">Ladda ned JSON</button>
+      <button id="btn-csv">Ladda ned CSV</button>
+      <button id="btn-clear">Rensa text</button>
     </div>
-
-    <!-- Om oss -->
-    <section class="card section" id="om-oss">
-      <h2>Om oss</h2>
-      <p>
-        Textverktyget.se skapades för att göra det enklare för studenter, skribenter och lärare att analysera 
-        texter på svenska. Verktyget är helt gratis och tillgängligt för alla.
-      </p>
-      <p>
-        Projektet drivs med målet att tillhandahålla enkla digitala hjälpmedel för språk och skrivande – för att 
-        göra skrivprocessen lättare och mer effektiv.
-      </p>
-    </section>
-
-    <!-- Hur man använder -->
-    <section class="card section" id="anvandning">
-      <h2>Hur man använder verktyget</h2>
-      <ol>
-        <li>Klistra in eller skriv din text i rutan ovan.</li>
-        <li>Klicka på <strong>Analysera</strong>.</li>
-        <li>Se antal ord, tecken och meningar till höger.</li>
-      </ol>
-      <h3>Exempel</h3>
-      <p>
-        Om du klistrar in en skoluppgift eller artikel får du direkt veta hur många ord texten innehåller – perfekt för 
-        inlämningar, uppsatser eller artiklar.
-      </p>
-      <h3>Tips</h3>
-      <ul>
-        <li>Testa olika texter för att jämföra längd och struktur.</li>
-        <li>Fungerar direkt i webbläsaren på dator, surfplatta och mobil.</li>
-        <li>Ingen inloggning krävs – enkelt och snabbt!</li>
-      </ul>
-    </section>
-
-    <!-- Integritet -->
-    <section class="card section" id="integritet">
-      <h2>Integritetspolicy</h2>
-      <p>
-        Vi värnar om din integritet. Textverktyget.se samlar inte in några personuppgifter och lagrar inte texter som du analyserar. 
-        All bearbetning sker lokalt i din webbläsare.
-      </p>
-      <h3>Kakor (Cookies)</h3>
-      <p>
-        Webbplatsen använder endast nödvändiga cookies för funktionalitet. Om vi i framtiden använder tredjepartscookies, till exempel 
-        för annonser, kommer detta att framgå tydligt här.
-      </p>
-      <h3>Kontakt</h3>
-      <p>
-        Har du frågor? Kontakta oss på: <a href="mailto:info@textverktyget.se">info@textverktyget.se</a>
-      </p>
-    </section>
-
-    <footer class="container">
-      <div class="muted">© <span id="y"></span> Textverktyget.se · <a href="#integritet">Integritet</a></div>
-    </footer>
   </main>
 
   <script>
-    // Enkel textanalys (lokalt i webbläsaren)
-    const input = document.getElementById('inputText');
-    const wordsEl = document.getElementById('words');
-    const charsEl = document.getElementById('chars');
-    const sentencesEl = document.getElementById('sentences');
+    // ------- Hjälpfunktioner -------
+    const $ = (id)=>document.getElementById(id);
+    const debounce=(fn,ms=150)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}}
 
-    function analyze(){
-      const t = (input.value || '').trim();
-      const words = t ? t.split(/\s+/).filter(Boolean).length : 0;
-      const chars = t.length;
-      const sentences = t ? (t.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || []).length : 0;
-      wordsEl.textContent = words;
-      charsEl.textContent = chars;
-      sentencesEl.textContent = sentences;
+    const countWords = (t)=> t.trim().length ? t.trim().split(/\s+/).filter(Boolean).length : 0;
+    const countChars = (t)=> t.length;
+    const countCharsNoSpace = (t)=> t.replace(/\s/g,'').length;
+    const sentences = (t)=> (t.match(/[.!?…]+/g)||[]).length || (t.trim()?1:0);
+    const paragraphs = (t)=> t.trim().length ? t.trim().split(/\n{2,}/).length : 0;
+    const avgSentenceLen = (w,s)=> s? (w/s).toFixed(1) : 0;
+    const lix = (t)=>{
+      const w = countWords(t);
+      const s = sentences(t) || 1;
+      const long = (t.match(/\b[\p{L}]{7,}\b/gu)||[]).length;
+      return w? Math.round(w/s + (long*100)/w) : 0;
+    };
+    const readTimeMin = (w)=> Math.max(1, Math.ceil(w/200)); // 200 ord/min
+
+    function compute(text){
+      const w = countWords(text);
+      const c = countChars(text);
+      const cns = countCharsNoSpace(text);
+      const s = sentences(text);
+      const p = paragraphs(text);
+      const avg = avgSentenceLen(w,s);
+      const LIX = lix(text);
+      const rt = readTimeMin(w);
+      return {words:w, chars:c, chars_no_space:cns, sentences:s, paragraphs:p, avg_sentence:avg, lix:LIX, read_minutes:rt};
     }
-    document.getElementById('analyzeBtn').addEventListener('click', analyze);
-    document.getElementById('clearBtn').addEventListener('click', ()=>{ input.value=''; analyze(); });
-    input.addEventListener('input', analyze);
-    analyze();
 
-    // Social share knappar
-    const shareBox = document.getElementById('shareBox');
-    (function(){
-      const pageUrl = encodeURIComponent(window.location.href);
-      const text = encodeURIComponent('Gratis ordräknare & textanalys på svenska – testa Textverktyget.se');
-      const buttons = [
-        {label:'Dela på Facebook', href:`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`},
-        {label:'Dela på X/Twitter', href:`https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`},
-        {label:'Dela på LinkedIn', href:`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`}
-      ];
-      buttons.forEach(b=>{
-        const a=document.createElement('a'); a.className='share-btn'; a.href=b.href; a.target='_blank'; a.rel='noopener'; a.textContent=b.label; shareBox.appendChild(a);
-      });
-    })();
+    function render(r){
+      $('res-words').textContent = r.words;
+      $('res-chars').textContent = r.chars;
+      $('res-chars-ns').textContent = r.chars_no_space;
+      $('res-sentences').textContent = r.sentences;
+      $('res-paras').textContent = r.paragraphs;
+      $('res-avg-sent').textContent = r.avg_sentence;
+      $('res-lix').textContent = r.lix;
+      $('res-read').textContent = r.read_minutes + ' min';
+    }
 
-    // Footer-år
-    document.getElementById('y').textContent = new Date().getFullYear();
+    const input = $('input');
+    const onChange = ()=> render(compute(input.value));
+    input.addEventListener('input', debounce(onChange,150));
+    document.addEventListener('DOMContentLoaded', onChange);
+
+    // ------- Export & actions -------
+    const toCSV = (obj)=> 'nyckel,värde\n' + Object.entries(obj).map(([k,v])=>`${k},${v}`).join('\n');
+
+    $('btn-copy').addEventListener('click', ()=> {
+      const data = compute(input.value);
+      navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+    });
+    $('btn-json').addEventListener('click', ()=> {
+      const data = compute(input.value);
+      const a=document.createElement('a');
+      a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data));
+      a.download='textverktyget_resultat.json'; a.click();
+    });
+    $('btn-csv').addEventListener('click', ()=> {
+      const data = compute(input.value);
+      const a=document.createElement('a');
+      a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(toCSV(data));
+      a.download='textverktyget_resultat.csv'; a.click();
+    });
+    $('btn-clear').addEventListener('click', ()=> { input.value=''; onChange(); input.focus(); });
   </script>
 </body>
 </html>
