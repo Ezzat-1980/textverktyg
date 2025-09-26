@@ -1,0 +1,3 @@
+git add index.html
+git commit -m "feat: LIX, lästid, fler räknare, export + SEO"
+git push -u origin feat/textanalys
