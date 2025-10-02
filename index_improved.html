@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ordräknare & Textanalys på svenska – Gratis | Textverktyget</title>
+  <meta name="description" content="Räkna ord, tecken, meningar, stycken, LIX och lästid. Allt sker lokalt i din webbläsare. Ingen lagring.">
+  <meta property="og:title" content="Textverktyget – Ordräknare & Textanalys">
+  <meta property="og:description" content="Gratis, privat och snabbt. LIX, lästid, export till JSON/CSV och fler textverktyg.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://textverktyget.se/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://textverktyget.se/">
+  <style>
+    /* Basfärger och variabler för enkel justering av utseende */
+    :root {
+      --gap: 12px;
+      --primary: #0a7cff;
+      --primary-dark: #0550a8;
+      --card-bg: #fafafa;
+      --card-border: #eee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial;
+      margin: 0;
+      line-height: 1.5;
+      background: #fff;
+      color: #222;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 10px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      z-index: 10;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .trust {
+      font-size: .9rem;
+      color: #0a0;
+    }
+    h1 { margin: 0; }
+    textarea {
+      width: 100%;
+      min-height: 260px;
+      padding: 12px;
+      font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      resize: vertical;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
+      gap: var(--gap);
+      margin-top: var(--gap);
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: .95rem;
+      color: var(--primary-dark);
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap);
+      margin-top: var(--gap);
+    }
+    button {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #f8f8f8;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    button:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary-dark);
+    }
+    .sr-only { position: absolute; left: -9999px; }
+    /* Dark mode stöd */
+    @media (prefers-color-scheme: dark) {
+      body { background: #0b0b0b; color: #eaeaea; }
+      header { background: #0b0b0b; border-color: #222; }
+      textarea { background: #111; color: #eaeaea; border: 1px solid #222; }
+      .card { background: #0f0f0f; border-color: #222; }
+      button { background: #111; border-color: #222; color: #eaeaea; }
+      button:hover { background: var(--primary-dark); color: #fff; }
+      .card h3 { color: #89c5ff; }
+      .trust { color: #8fdd8f; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Textverktyget",
+   "url":"https://textverktyget.se/","applicationCategory":"Utilities","operatingSystem":"Web"}
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Textverktyget</h1>
+      <div class="trust" aria-live="polite">Allt kör lokalt i din webbläsare. Ingen text skickas eller lagras.</div>
+    </div>
+  </header>
+
+  <main class="wrap" role="main">
+    <label for="input" class="sr-only">Text att analysera</label>
+    <textarea id="input" placeholder="Klistra in eller skriv din text här…"></textarea>
+
+    <section class="grid" aria-label="Resultat">
+      <div class="card"><h3>Ord</h3><div id="res-words">0</div></div>
+      <div class="card"><h3>Tecken</h3><div id="res-chars">0</div></div>
+      <div class="card"><h3>Tecken utan blanksteg</h3><div id="res-chars-ns">0</div></div>
+      <div class="card"><h3>Meningar</h3><div id="res-sentences">0</div></div>
+      <div class="card"><h3>Stycken</h3><div id="res-paras">0</div></div>
+      <div class="card"><h3>Gen. meningslängd</h3><div id="res-avg-sent">0</div></div>
+      <div class="card"><h3>LIX</h3><div id="res-lix">0</div></div>
+      <div class="card"><h3>Lästid</h3><div id="res-read">0 min</div></div>
+      <div class="card"><h3>Mest förekommande ord</h3><ul id="res-top-words" style="margin:0;padding-left:16px;"></ul></div>
+    </section>
+
+    <div class="toolbar" role="group" aria-label="Verktyg">
+      <button id="btn-copy" title="Kopiera statistik i JSON-format">Kopiera resultat</button>
+      <button id="btn-json" title="Ladda ned statistik som JSON">Ladda ned JSON</button>
+      <button id="btn-csv" title="Ladda ned statistik som CSV">Ladda ned CSV</button>
+      <button id="btn-clear" title="Rensa text">Rensa text</button>
+      <button id="btn-upper" title="Konvertera till VERSALER">VERSALER</button>
+      <button id="btn-lower" title="Konvertera till gemener">gemener</button>
+      <button id="btn-title" title="Konvertera till Title Case">Title Case</button>
+    </div>
+  </main>
+
+  <script>
+    // ------- Hjälpfunktioner -------
+    const $ = (id)=>document.getElementById(id);
+    const debounce=(fn,ms=150)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};
+
+    const countWords = (t)=> t.trim().length ? t.trim().split(/\s+/).filter(Boolean).length : 0;
+    const countChars = (t)=> t.length;
+    const countCharsNoSpace = (t)=> t.replace(/\s/g,'').length;
+    const sentences = (t)=> (t.match(/[.!?…]+/g)||[]).length || (t.trim()?1:0);
+    const paragraphs = (t)=> t.trim().length ? t.trim().split(/\n{2,}/).length : 0;
+    const avgSentenceLen = (w,s)=> s? (w/s).toFixed(1) : 0;
+    const lix = (t)=>{
+      const w = countWords(t);
+      const s = sentences(t) || 1;
+      const long = (t.match(/\b[\p{L}]{7,}\b/gu)||[]).length;
+      return w? Math.round(w/s + (long*100)/w) : 0;
+    };
+    const readTimeMin = (w)=> Math.max(1, Math.ceil(w/200)); // 200 ord/min
+
+    // Beräkna de N mest förekommande orden, exklusive stoppord
+    const stopWords = new Set(['och','det','att','som','på','den','i','en','med','för','till','de','är','detta','var','är','av','har']);
+    function getTopWords(text, n=5) {
+      const words = text.toLowerCase().match(/\b[\p{L}’']+\b/gu) || [];
+      const freq = {};
+      for (const w of words) {
+        if (stopWords.has(w)) continue;
+        freq[w] = (freq[w] || 0) + 1;
+      }
+      return Object.entries(freq)
+        .sort((a,b)=> b[1]-a[1])
+        .slice(0,n)
+        .map(([word,count])=>({word,count}));
+    }
+
+    function compute(text){
+      const w = countWords(text);
+      const c = countChars(text);
+      const cns = countCharsNoSpace(text);
+      const s = sentences(text);
+      const p = paragraphs(text);
+      const avg = avgSentenceLen(w,s);
+      const LIX = lix(text);
+      const rt = readTimeMin(w);
+      const top = getTopWords(text,5);
+      return {words:w, chars:c, chars_no_space:cns, sentences:s, paragraphs:p, avg_sentence:avg, lix:LIX, read_minutes:rt, topWords:top};
+    }
+
+    function render(r){
+      $('res-words').textContent = r.words;
+      $('res-chars').textContent = r.chars;
+      $('res-chars-ns').textContent = r.chars_no_space;
+      $('res-sentences').textContent = r.sentences;
+      $('res-paras').textContent = r.paragraphs;
+      $('res-avg-sent').textContent = r.avg_sentence;
+      $('res-lix').textContent = r.lix;
+      $('res-read').textContent = r.read_minutes + ' min';
+      // renderar topplistan
+      const listEl = $('res-top-words');
+      listEl.innerHTML = '';
+      r.topWords.forEach(({word,count})=>{
+        const li = document.createElement('li');
+        li.textContent = `${word} (${count})`;
+        listEl.appendChild(li);
+      });
+    }
+
+    const input = $('input');
+    const onChange = ()=> render(compute(input.value));
+    input.addEventListener('input', debounce(onChange,150));
+    document.addEventListener('DOMContentLoaded', onChange);
+
+    // ------- Export & actions -------
+    const toCSV = (obj)=> 'nyckel,värde\n' + Object.entries(obj).map(([k,v])=>`${k},${v}`).join('\n');
+
+    $('btn-copy').addEventListener('click', ()=> {
+      const data = compute(input.value);
+      navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+    });
+    $('btn-json').addEventListener('click', ()=> {
+      const data = compute(input.value);
+      const a=document.createElement('a');
+      a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data));
+      a.download='textverktyget_resultat.json'; a.click();
+    });
+    $('btn-csv').addEventListener('click', ()=> {
+      const data = compute(input.value);
+      const a=document.createElement('a');
+      a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(toCSV(data));
+      a.download='textverktyget_resultat.csv'; a.click();
+    });
+    $('btn-clear').addEventListener('click', ()=> { input.value=''; onChange(); input.focus(); });
+
+    // ------- Texttransformationer -------
+    function toTitleCase(str) {
+      return str.toLowerCase().replace(/(?:^|[\s\n\r\t])([\p{L}])/gu, (m,c) => m.replace(c, c.toUpperCase()));
+    }
+    $('btn-upper').addEventListener('click', ()=> {
+      input.value = input.value.toUpperCase(); onChange(); input.focus();
+    });
+    $('btn-lower').addEventListener('click', ()=> {
+      input.value = input.value.toLowerCase(); onChange(); input.focus();
+    });
+    $('btn-title').addEventListener('click', ()=> {
+      input.value = toTitleCase(input.value); onChange(); input.focus();
+    });
+  </script>
+</body>
+</html>
