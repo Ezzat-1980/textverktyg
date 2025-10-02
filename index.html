@@ -3,36 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ordräknare & Textanalys på svenska – Gratis | Textverktyget</title>
+  <title>Ordräknare &amp; Textanalys på svenska – Gratis | Textverktyget</title>
   <meta name="description" content="Räkna ord, tecken, meningar, stycken, LIX och lästid. Allt sker lokalt i din webbläsare. Ingen lagring.">
-  <meta property="og:title" content="Textverktyget – Ordräknare & Textanalys">
+  <meta property="og:title" content="Textverktyget – Ordräknare &amp; Textanalys">
   <meta property="og:description" content="Gratis, privat och snabbt. LIX, lästid, export till JSON/CSV och fler textverktyg.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://textverktyget.se/">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://textverktyget.se/">
   <style>
-    /* Basfärger och variabler för enkel justering av utseende */
+    /* Färgvariabler för en ljus och mjuk bakgrund. Lätt att anpassa här. */
     :root {
       --gap: 12px;
       --primary: #0a7cff;
       --primary-dark: #0550a8;
-      --card-bg: #fafafa;
-      --card-border: #eee;
+      --bg-light: #f5f9ff; /* ljus bakgrundston med lite blått */
+      --card-bg: #ffffff;
+      --card-border: #e0e6f0;
     }
     * { box-sizing: border-box; }
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial;
       margin: 0;
       line-height: 1.5;
-      background: #fff;
-      color: #222;
+      background: var(--bg-light);
+      color: #24304a;
     }
     header {
       position: sticky;
       top: 0;
       background: #fff;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--card-border);
       padding: 10px 16px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
       z-index: 10;
@@ -44,7 +45,7 @@
     }
     .trust {
       font-size: .9rem;
-      color: #0a0;
+      color: #007a00;
     }
     h1 { margin: 0; }
     textarea {
@@ -52,9 +53,11 @@
       min-height: 260px;
       padding: 12px;
       font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      border: 1px solid #ddd;
+      border: 1px solid var(--card-border);
       border-radius: 10px;
       resize: vertical;
+      background: #fff;
+      color: #24304a;
     }
     .grid {
       display: grid;
@@ -81,11 +84,12 @@
     }
     button {
       padding: 8px 12px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--card-border);
       border-radius: 10px;
-      background: #f8f8f8;
+      background: #eff5ff;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
+      color: #24304a;
     }
     button:hover {
       background: var(--primary);
@@ -93,16 +97,36 @@
       border-color: var(--primary-dark);
     }
     .sr-only { position: absolute; left: -9999px; }
-    /* Dark mode stöd */
+    /* Mörkt läge med färg istället för svart */
     @media (prefers-color-scheme: dark) {
-      body { background: #0b0b0b; color: #eaeaea; }
-      header { background: #0b0b0b; border-color: #222; }
-      textarea { background: #111; color: #eaeaea; border: 1px solid #222; }
-      .card { background: #0f0f0f; border-color: #222; }
-      button { background: #111; border-color: #222; color: #eaeaea; }
-      button:hover { background: var(--primary-dark); color: #fff; }
-      .card h3 { color: #89c5ff; }
-      .trust { color: #8fdd8f; }
+      body {
+        background: #011b37;
+        color: #e4f1ff;
+      }
+      header {
+        background: #02224b;
+        border-color: #02366f;
+      }
+      textarea {
+        background: #021f46;
+        color: #e4f1ff;
+        border: 1px solid #032f63;
+      }
+      .card {
+        background: #05285e;
+        border-color: #04366d;
+      }
+      button {
+        background: #062d6d;
+        border-color: #083c8c;
+        color: #e4f1ff;
+      }
+      button:hover {
+        background: var(--primary-dark);
+        color: #fff;
+      }
+      .card h3 { color: #9dc7ff; }
+      .trust { color: #a6e9a6; }
     }
   </style>
   <script type="application/ld+json">
@@ -165,12 +189,12 @@
     const readTimeMin = (w)=> Math.max(1, Math.ceil(w/200)); // 200 ord/min
 
     // Beräkna de N mest förekommande orden, exklusive stoppord
-    const stopWords = new Set(['och','det','att','som','på','den','i','en','med','för','till','de','är','detta','var','är','av','har']);
+    const stopWords = new Set(['och','det','att','som','på','den','i','en','med','för','till','de','är','detta','var','har']);
     function getTopWords(text, n=5) {
       const words = text.toLowerCase().match(/\b[\p{L}’']+\b/gu) || [];
       const freq = {};
       for (const w of words) {
-        if (stopWords.has(w)) continue;
+        if (stopWords.has(w) || w.length < 2) continue;
         freq[w] = (freq[w] || 0) + 1;
       }
       return Object.entries(freq)
@@ -201,7 +225,7 @@
       $('res-avg-sent').textContent = r.avg_sentence;
       $('res-lix').textContent = r.lix;
       $('res-read').textContent = r.read_minutes + ' min';
-      // renderar topplistan
+      // rendera topplistan
       const listEl = $('res-top-words');
       listEl.innerHTML = '';
       r.topWords.forEach(({word,count})=>{
