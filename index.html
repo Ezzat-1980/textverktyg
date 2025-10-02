@@ -12,12 +12,12 @@
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://textverktyget.se/">
   <style>
-    /* Färgvariabler för en ljus och mjuk bakgrund. Lätt att anpassa här. */
+    /* Färgvariabler för en ljus, enhetlig design. Mörkt läge är inaktiverat för att undvika svart bakgrund. */
     :root {
       --gap: 12px;
       --primary: #0a7cff;
       --primary-dark: #0550a8;
-      --bg-light: #f5f9ff; /* ljus bakgrundston med lite blått */
+      --bg-light: #f5f9ff;
       --card-bg: #ffffff;
       --card-border: #e0e6f0;
     }
@@ -97,37 +97,7 @@
       border-color: var(--primary-dark);
     }
     .sr-only { position: absolute; left: -9999px; }
-    /* Mörkt läge med färg istället för svart */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #011b37;
-        color: #e4f1ff;
-      }
-      header {
-        background: #02224b;
-        border-color: #02366f;
-      }
-      textarea {
-        background: #021f46;
-        color: #e4f1ff;
-        border: 1px solid #032f63;
-      }
-      .card {
-        background: #05285e;
-        border-color: #04366d;
-      }
-      button {
-        background: #062d6d;
-        border-color: #083c8c;
-        color: #e4f1ff;
-      }
-      button:hover {
-        background: var(--primary-dark);
-        color: #fff;
-      }
-      .card h3 { color: #9dc7ff; }
-      .trust { color: #a6e9a6; }
-    }
+    /* Inget mörkt läge – samma färger används även om användarens system är i mörkt läge. */
   </style>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebApplication","name":"Textverktyget",
