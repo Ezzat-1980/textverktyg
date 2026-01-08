@@ -1,249 +1,42 @@
-<!doctype html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ordräknare &amp; Textanalys på svenska – Gratis | Textverktyget</title>
-  <meta name="description" content="Räkna ord, tecken, meningar, stycken, LIX och lästid. Allt sker lokalt i din webbläsare. Ingen lagring.">
-  <meta property="og:title" content="Textverktyget – Ordräknare &amp; Textanalys">
-  <meta property="og:description" content="Gratis, privat och snabbt. LIX, lästid, export till JSON/CSV och fler textverktyg.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://textverktyget.se/">
-  <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="https://textverktyget.se/">
-  <style>
-    /* Färgvariabler för en ljus, enhetlig design. Mörkt läge är inaktiverat för att undvika svart bakgrund. */
-    :root {
-      --gap: 12px;
-      --primary: #0a7cff;
-      --primary-dark: #0550a8;
-      --bg-light: #f5f9ff;
-      --card-bg: #ffffff;
-      --card-border: #e0e6f0;
-    }
-    * { box-sizing: border-box; }
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial;
-      margin: 0;
-      line-height: 1.5;
-      background: var(--bg-light);
-      color: #24304a;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      background: #fff;
-      border-bottom: 1px solid var(--card-border);
-      padding: 10px 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      z-index: 10;
-    }
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-    .trust {
-      font-size: .9rem;
-      color: #007a00;
-    }
-    h1 { margin: 0; }
-    textarea {
-      width: 100%;
-      min-height: 260px;
-      padding: 12px;
-      font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      resize: vertical;
-      background: #fff;
-      color: #24304a;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
-      gap: var(--gap);
-      margin-top: var(--gap);
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 12px;
-    }
-    .card h3 {
-      margin: 0 0 6px;
-      font-size: .95rem;
-      color: var(--primary-dark);
-    }
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--gap);
-      margin-top: var(--gap);
-    }
-    button {
-      padding: 8px 12px;
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      background: #eff5ff;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      color: #24304a;
-    }
-    button:hover {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary-dark);
-    }
-    .sr-only { position: absolute; left: -9999px; }
-    /* Inget mörkt läge – samma färger används även om användarens system är i mörkt läge. */
-  </style>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"Textverktyget",
-   "url":"https://textverktyget.se/","applicationCategory":"Utilities","operatingSystem":"Web"}
-  </script>
-</head>
-<body>
-  <header>
-    <div class="wrap">
-      <h1>Textverktyget</h1>
-      <div class="trust" aria-live="polite">Allt kör lokalt i din webbläsare. Ingen text skickas eller lagras.</div>
-    </div>
-  </header>
+<section class="wrap" style="margin-top: 40px; border-top: 1px solid var(--card-border); padding-top: 40px;">
+    <article style="max-width: 800px; margin: 0 auto; color: #4a5568;">
+      <h2 style="color: var(--primary-dark);">Gratis Ordräknare och Textanalys Online</h2>
+      <p>
+        Välkommen till <strong>Textverktyget.se</strong> – det enklaste sättet att analysera och förbättra din text direkt i webbläsaren. 
+        Oavsett om du är student som skriver en uppsats, en författare som kollar kapitelängd, eller en SEO-specialist som optimerar innehåll, 
+        ger vårt verktyg dig omedelbar statistik.
+      </p>
 
-  <main class="wrap" role="main">
-    <label for="input" class="sr-only">Text att analysera</label>
-    <textarea id="input" placeholder="Klistra in eller skriv din text här…"></textarea>
+      <h3>Hur fungerar ordräknaren?</h3>
+      <p>
+        Vår <strong>gratis ordräknare</strong> räknar inte bara ord. Den analyserar strukturen i din text i realtid. 
+        Så fort du skriver eller klistrar in text, beräknar vi:
+      </p>
+      <ul style="line-height: 1.8;">
+        <li><strong>Antal ord och tecken:</strong> Viktigt för inlägg på sociala medier (Twitter/X, LinkedIn) och skoluppgifter.</li>
+        <li><strong>LIX (Läsbarhetsindex):</strong> Ett svenskt mått på hur svår texten är att läsa. Ett lågt värde är lättläst (barnbok), medan ett högt värde är komplicerat (byråkratsvenska).</li>
+        <li><strong>Lästid:</strong> Hur lång tid tar det för en genomsnittlig läsare att läsa din text?</li>
+      </ul>
 
-    <section class="grid" aria-label="Resultat">
-      <div class="card"><h3>Ord</h3><div id="res-words">0</div></div>
-      <div class="card"><h3>Tecken</h3><div id="res-chars">0</div></div>
-      <div class="card"><h3>Tecken utan blanksteg</h3><div id="res-chars-ns">0</div></div>
-      <div class="card"><h3>Meningar</h3><div id="res-sentences">0</div></div>
-      <div class="card"><h3>Stycken</h3><div id="res-paras">0</div></div>
-      <div class="card"><h3>Gen. meningslängd</h3><div id="res-avg-sent">0</div></div>
-      <div class="card"><h3>LIX</h3><div id="res-lix">0</div></div>
-      <div class="card"><h3>Lästid</h3><div id="res-read">0 min</div></div>
-      <div class="card"><h3>Mest förekommande ord</h3><ul id="res-top-words" style="margin:0;padding-left:16px;"></ul></div>
-    </section>
+      <h3>Är min text säker? (Integritet)</h3>
+      <p>
+        Ja, till skillnad från många andra onlinetjänster körs Textverktyget <strong>100% lokalt i din webbläsare</strong>. 
+        Ingen data skickas någonsin till en server. Det du skriver stannar på din enhet. Detta gör verktyget perfekt för känsliga dokument, 
+        företagshemligheter eller privat dagboksskrivande.
+      </p>
 
-    <div class="toolbar" role="group" aria-label="Verktyg">
-      <button id="btn-copy" title="Kopiera statistik i JSON-format">Kopiera resultat</button>
-      <button id="btn-json" title="Ladda ned statistik som JSON">Ladda ned JSON</button>
-      <button id="btn-csv" title="Ladda ned statistik som CSV">Ladda ned CSV</button>
-      <button id="btn-clear" title="Rensa text">Rensa text</button>
-      <button id="btn-upper" title="Konvertera till VERSALER">VERSALER</button>
-      <button id="btn-lower" title="Konvertera till gemener">gemener</button>
-      <button id="btn-title" title="Konvertera till Title Case">Title Case</button>
-    </div>
-  </main>
-
-  <script>
-    // ------- Hjälpfunktioner -------
-    const $ = (id)=>document.getElementById(id);
-    const debounce=(fn,ms=150)=>{let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}};
-
-    const countWords = (t)=> t.trim().length ? t.trim().split(/\s+/).filter(Boolean).length : 0;
-    const countChars = (t)=> t.length;
-    const countCharsNoSpace = (t)=> t.replace(/\s/g,'').length;
-    const sentences = (t)=> (t.match(/[.!?…]+/g)||[]).length || (t.trim()?1:0);
-    const paragraphs = (t)=> t.trim().length ? t.trim().split(/\n{2,}/).length : 0;
-    const avgSentenceLen = (w,s)=> s? (w/s).toFixed(1) : 0;
-    const lix = (t)=>{
-      const w = countWords(t);
-      const s = sentences(t) || 1;
-      const long = (t.match(/\b[\p{L}]{7,}\b/gu)||[]).length;
-      return w? Math.round(w/s + (long*100)/w) : 0;
-    };
-    const readTimeMin = (w)=> Math.max(1, Math.ceil(w/200)); // 200 ord/min
-
-    // Beräkna de N mest förekommande orden, exklusive stoppord
-    const stopWords = new Set(['och','det','att','som','på','den','i','en','med','för','till','de','är','detta','var','har']);
-    function getTopWords(text, n=5) {
-      const words = text.toLowerCase().match(/\b[\p{L}’']+\b/gu) || [];
-      const freq = {};
-      for (const w of words) {
-        if (stopWords.has(w) || w.length < 2) continue;
-        freq[w] = (freq[w] || 0) + 1;
-      }
-      return Object.entries(freq)
-        .sort((a,b)=> b[1]-a[1])
-        .slice(0,n)
-        .map(([word,count])=>({word,count}));
-    }
-
-    function compute(text){
-      const w = countWords(text);
-      const c = countChars(text);
-      const cns = countCharsNoSpace(text);
-      const s = sentences(text);
-      const p = paragraphs(text);
-      const avg = avgSentenceLen(w,s);
-      const LIX = lix(text);
-      const rt = readTimeMin(w);
-      const top = getTopWords(text,5);
-      return {words:w, chars:c, chars_no_space:cns, sentences:s, paragraphs:p, avg_sentence:avg, lix:LIX, read_minutes:rt, topWords:top};
-    }
-
-    function render(r){
-      $('res-words').textContent = r.words;
-      $('res-chars').textContent = r.chars;
-      $('res-chars-ns').textContent = r.chars_no_space;
-      $('res-sentences').textContent = r.sentences;
-      $('res-paras').textContent = r.paragraphs;
-      $('res-avg-sent').textContent = r.avg_sentence;
-      $('res-lix').textContent = r.lix;
-      $('res-read').textContent = r.read_minutes + ' min';
-      // rendera topplistan
-      const listEl = $('res-top-words');
-      listEl.innerHTML = '';
-      r.topWords.forEach(({word,count})=>{
-        const li = document.createElement('li');
-        li.textContent = `${word} (${count})`;
-        listEl.appendChild(li);
-      });
-    }
-
-    const input = $('input');
-    const onChange = ()=> render(compute(input.value));
-    input.addEventListener('input', debounce(onChange,150));
-    document.addEventListener('DOMContentLoaded', onChange);
-
-    // ------- Export & actions -------
-    const toCSV = (obj)=> 'nyckel,värde\n' + Object.entries(obj).map(([k,v])=>`${k},${v}`).join('\n');
-
-    $('btn-copy').addEventListener('click', ()=> {
-      const data = compute(input.value);
-      navigator.clipboard.writeText(JSON.stringify(data, null, 2));
-    });
-    $('btn-json').addEventListener('click', ()=> {
-      const data = compute(input.value);
-      const a=document.createElement('a');
-      a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(data));
-      a.download='textverktyget_resultat.json'; a.click();
-    });
-    $('btn-csv').addEventListener('click', ()=> {
-      const data = compute(input.value);
-      const a=document.createElement('a');
-      a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(toCSV(data));
-      a.download='textverktyget_resultat.csv'; a.click();
-    });
-    $('btn-clear').addEventListener('click', ()=> { input.value=''; onChange(); input.focus(); });
-
-    // ------- Texttransformationer -------
-    function toTitleCase(str) {
-      return str.toLowerCase().replace(/(?:^|[\s\n\r\t])([\p{L}])/gu, (m,c) => m.replace(c, c.toUpperCase()));
-    }
-    $('btn-upper').addEventListener('click', ()=> {
-      input.value = input.value.toUpperCase(); onChange(); input.focus();
-    });
-    $('btn-lower').addEventListener('click', ()=> {
-      input.value = input.value.toLowerCase(); onChange(); input.focus();
-    });
-    $('btn-title').addEventListener('click', ()=> {
-      input.value = toTitleCase(input.value); onChange(); input.focus();
-    });
-  </script>
-</body>
-</html>
+      <h3>Verktyg för skribenter och programmerare</h3>
+      <p>
+        Förutom statistik erbjuder vi kraftfulla funktioner för textmanipulation:
+      </p>
+      <ul>
+        <li><strong>Konvertera skiftläge:</strong> Ändra snabbt text till VERSALER (Uppercase), gemener (lowercase) eller Title Case.</li>
+        <li><strong>Rensa text:</strong> Ta bort onödiga mellanslag och formatering som följer med när du kopierar från PDF:er eller webbsidor.</li>
+        <li><strong>JSON & CSV Export:</strong> För utvecklare som behöver datan i ett strukturerat format.</li>
+      </ul>
+      
+      <p style="margin-top: 30px; font-size: 0.9em; color: #718096;">
+        <em>Textverktyget.se är ett gratisverktyg utvecklat för att underlätta skrivprocessen för alla. Har du förslag på funktioner? Kontakta oss gärna.</em>
+      </p>
+    </article>
+  </section>
