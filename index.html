@@ -1,42 +1,116 @@
-<section class="wrap" style="margin-top: 40px; border-top: 1px solid var(--card-border); padding-top: 40px;">
-    <article style="max-width: 800px; margin: 0 auto; color: #4a5568;">
-      <h2 style="color: var(--primary-dark);">Gratis Ordräknare och Textanalys Online</h2>
-      <p>
-        Välkommen till <strong>Textverktyget.se</strong> – det enklaste sättet att analysera och förbättra din text direkt i webbläsaren. 
-        Oavsett om du är student som skriver en uppsats, en författare som kollar kapitelängd, eller en SEO-specialist som optimerar innehåll, 
-        ger vårt verktyg dig omedelbar statistik.
-      </p>
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gratis Ordräknare & Textanalys | Textverktyget.se</title>
+  <meta name="description" content="Räkna ord, tecken och analysera LIX gratis online. Allt sker lokalt i din webbläsare för maximal säkerhet.">
+  <style>
+    :root {
+      --primary: #0a7cff;
+      --bg: #f5f9ff; /* Ljus bakgrund */
+      --card-bg: #ffffff;
+      --text: #24304a;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: var(--bg); /* Denna gör sidan vit/ljus */
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    textarea {
+      width: 100%;
+      height: 300px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .card h3 { margin: 0 0 5px; font-size: 14px; color: #666; }
+    .card .val { font-size: 24px; font-weight: bold; color: var(--primary); }
+    
+    /* SEO TEXT SECTION - Detta gör Google glad */
+    .seo-text {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #ddd;
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+    }
+    .seo-text h2 { color: var(--primary); }
+  </style>
+</head>
+<body>
 
-      <h3>Hur fungerar ordräknaren?</h3>
-      <p>
-        Vår <strong>gratis ordräknare</strong> räknar inte bara ord. Den analyserar strukturen i din text i realtid. 
-        Så fort du skriver eller klistrar in text, beräknar vi:
-      </p>
-      <ul style="line-height: 1.8;">
-        <li><strong>Antal ord och tecken:</strong> Viktigt för inlägg på sociala medier (Twitter/X, LinkedIn) och skoluppgifter.</li>
-        <li><strong>LIX (Läsbarhetsindex):</strong> Ett svenskt mått på hur svår texten är att läsa. Ett lågt värde är lättläst (barnbok), medan ett högt värde är komplicerat (byråkratsvenska).</li>
-        <li><strong>Lästid:</strong> Hur lång tid tar det för en genomsnittlig läsare att läsa din text?</li>
-      </ul>
+<div class="container">
+  <h1>Textverktyget <span style="font-size:0.6em; color:#666; font-weight:normal;">Gratis Ordräknare Online</span></h1>
+  
+  <textarea id="input" placeholder="Klistra in eller skriv din text här..."></textarea>
 
-      <h3>Är min text säker? (Integritet)</h3>
-      <p>
-        Ja, till skillnad från många andra onlinetjänster körs Textverktyget <strong>100% lokalt i din webbläsare</strong>. 
-        Ingen data skickas någonsin till en server. Det du skriver stannar på din enhet. Detta gör verktyget perfekt för känsliga dokument, 
-        företagshemligheter eller privat dagboksskrivande.
-      </p>
+  <div class="stats">
+    <div class="card"><h3>Ord</h3><div class="val" id="w">0</div></div>
+    <div class="card"><h3>Tecken</h3><div class="val" id="c">0</div></div>
+    <div class="card"><h3>Meningar</h3><div class="val" id="s">0</div></div>
+    <div class="card"><h3>LIX</h3><div class="val" id="lix">0</div></div>
+  </div>
 
-      <h3>Verktyg för skribenter och programmerare</h3>
-      <p>
-        Förutom statistik erbjuder vi kraftfulla funktioner för textmanipulation:
-      </p>
-      <ul>
-        <li><strong>Konvertera skiftläge:</strong> Ändra snabbt text till VERSALER (Uppercase), gemener (lowercase) eller Title Case.</li>
-        <li><strong>Rensa text:</strong> Ta bort onödiga mellanslag och formatering som följer med när du kopierar från PDF:er eller webbsidor.</li>
-        <li><strong>JSON & CSV Export:</strong> För utvecklare som behöver datan i ett strukturerat format.</li>
-      </ul>
-      
-      <p style="margin-top: 30px; font-size: 0.9em; color: #718096;">
-        <em>Textverktyget.se är ett gratisverktyg utvecklat för att underlätta skrivprocessen för alla. Har du förslag på funktioner? Kontakta oss gärna.</em>
-      </p>
-    </article>
-  </section>
+  <div class="seo-text">
+    <h2>Gratis Ordräknare och Textanalys</h2>
+    <p>Välkommen till <strong>Textverktyget.se</strong>. Detta är ett gratis verktyg för dig som vill räkna ord, tecken och kontrollera läsbarhet (LIX) snabbt och enkelt.</p>
+    
+    <h3>Hur fungerar det?</h3>
+    <p>Till skillnad från många andra sidor körs Textverktyget helt i din webbläsare. Ingen text skickas till någon server, vilket innebär att din text stannar privat hos dig.</p>
+    
+    <h3>Funktioner:</h3>
+    <ul>
+      <li><strong>Ordräknare:</strong> Perfekt för skoluppgifter eller artiklar med maxlängd.</li>
+      <li><strong>Teckenräknare:</strong> Bra för Twitter/X inlägg.</li>
+      <li><strong>LIX-analys:</strong> Se hur svårläst din text är.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  const el = (id) => document.getElementById(id);
+  const textInput = el('input');
+
+  function analyze() {
+    const t = textInput.value;
+    const w = t.trim() ? t.trim().split(/\s+/).length : 0;
+    const c = t.length;
+    const s = t.split(/[.!?]+/).filter(x => x.trim().length > 0).length || 1;
+    
+    // Enkel LIX (Approximation)
+    const longWords = (t.match(/[a-zA-ZåäöÅÄÖ]{7,}/g) || []).length;
+    const lix = w > 0 ? Math.round((w/s) + ((longWords * 100) / w)) : 0;
+
+    el('w').innerText = w;
+    el('c').innerText = c;
+    el('s').innerText = s;
+    el('lix').innerText = lix;
+  }
+
+  textInput.addEventListener('input', analyze);
+</script>
+
+</body>
+</html>
