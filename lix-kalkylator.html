@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gratis LIX-kalkylator – Beräkna LIX-värde online | Textverktyget.se</title>
+<meta name="description" content="Beräkna LIX-värde gratis online. Klistra in din text och se om den är lättläst, normalsvår eller svår. LIX-kalkylator för svenska texter.">
+<meta property="og:title" content="Gratis LIX-kalkylator – Beräkna läsbarhet på svenska">
+<meta property="og:description" content="Räkna ut LIX-värdet på din text direkt online. Gratis, privat, ingen installation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textverktyget.se/lix-kalkylator.html">
+<link rel="canonical" href="https://textverktyget.se/lix-kalkylator.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap&font-display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6696113059842943" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"LIX-kalkylator – Textverktyget",
+"url":"https://textverktyget.se/lix-kalkylator.html","applicationCategory":"Utilities","operatingSystem":"Web",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"},"description":"Gratis LIX-kalkylator för svenska texter"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Vad är LIX?","acceptedAnswer":{"@type":"Answer","text":"LIX (Läsbarhetsindex) är ett mått på hur svår en text är att läsa, framtaget av Carl-Hugo Björnsson. Det beräknas som: antal ord delat på antal meningar plus (antal långa ord gånger 100) delat på antal ord."}},
+{"@type":"Question","name":"Vilket LIX-värde är bra?","acceptedAnswer":{"@type":"Answer","text":"Under 25: Mycket lättläst (barnböcker). 25–35: Lättläst (skönlitteratur). 35–45: Normalsvår (dagstidningar). 45–55: Svår (facklitteratur). Över 55: Mycket svår (akademisk text)."}},
+{"@type":"Question","name":"Hur beräknar man LIX?","acceptedAnswer":{"@type":"Answer","text":"LIX = (antal ord / antal meningar) + (antal ord med 7+ bokstäver × 100 / antal ord). Du kan beräkna LIX gratis direkt på den här sidan."}},
+{"@type":"Question","name":"Vad är ett bra LIX för en uppsats?","acceptedAnswer":{"@type":"Answer","text":"En gymnasieuppsats bör ha LIX 35–45 (normalsvår). En akademisk uppsats eller akademiskt paper har ofta LIX 45–60. Undvik LIX över 65 – det gör texten onödigt svårläst."}}
+]}
+</script>
+<style>
+:root {
+  --primary: #1755f4; --primary-dark: #0d3fc2; --bg: #f7f8fc; --surface: #ffffff;
+  --border: #e4e7ef; --text: #111827; --muted: #6b7280; --stat-bg: #ffffff;
+  --radius: 12px; --gap: 12px; --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+  --green: #16a34a; --yellow: #d97706; --red: #dc2626;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0d0f14; --surface: #161b25; --border: #232b3a; --text: #e8eaf0; --muted: #8892a4; --stat-bg: #1a2235; }
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 20px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; height: 56px; }
+.logo { font-size: 1.25rem; font-weight: 700; color: var(--text); text-decoration: none; }
+.logo span { color: var(--primary); }
+.nav-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; font-weight: 600; }
+.nav-link:hover { color: var(--primary); }
+.kofi-btn { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: #ff5e5b; color: #fff !important; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-decoration: none; transition: background 0.15s; }
+.kofi-btn:hover { background: #e04a47; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+.page-desc { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
+.editor-wrap { position: relative; }
+#input { width: 100%; min-height: 220px; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); resize: vertical; outline: none; transition: border-color 0.2s; }
+#input:focus { border-color: var(--primary); }
+#char-counter { position: absolute; bottom: 10px; right: 14px; font-size: 0.75rem; color: var(--muted); pointer-events: none; }
+
+/* Big LIX display */
+.lix-hero {
+  margin-top: 20px;
+  padding: 28px;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.lix-big { font-size: 4rem; font-weight: 800; line-height: 1; color: var(--primary); font-variant-numeric: tabular-nums; }
+.lix-info { flex: 1; min-width: 180px; }
+.lix-label-text { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+.lix-desc { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+.lix-bar-wrap { margin-top: 20px; }
+.lix-bar-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); margin-bottom: 4px; }
+.lix-bar { height: 10px; border-radius: 99px; background: linear-gradient(to right, #16a34a, #84cc16, #facc15, #f97316, #dc2626); position: relative; }
+.lix-pointer { position: absolute; top: -4px; width: 4px; height: 18px; background: var(--text); border-radius: 2px; transform: translateX(-50%); transition: left 0.4s; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--gap); margin-top: var(--gap); }
+.stat-card { background: var(--stat-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 6px; }
+.stat-value { font-size: 1.4rem; font-weight: 700; color: var(--primary); line-height: 1; }
+
+.full-tool-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 12px 20px; background: var(--primary); color: #fff; border-radius: var(--radius); font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: background 0.15s; }
+.full-tool-link:hover { background: var(--primary-dark); }
+
+.lix-table-section { margin-top: 40px; padding: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.lix-table-section h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th { text-align: left; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); font-weight: 700; }
+td { padding: 10px 14px; border: 1px solid var(--border); color: var(--muted); }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+.badge-green { background: #dcfce7; color: #166534; }
+.badge-yellow { background: #fef9c3; color: #854d0e; }
+.badge-orange { background: #ffedd5; color: #9a3412; }
+.badge-red { background: #fee2e2; color: #991b1b; }
+@media (prefers-color-scheme: dark) {
+  .badge-green { background: #14532d; color: #4ade80; }
+  .badge-yellow { background: #422006; color: #fde68a; }
+  .badge-orange { background: #431407; color: #fdba74; }
+  .badge-red { background: #7f1d1d; color: #fca5a5; }
+}
+
+.seo-section { margin-top: 40px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.seo-section h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 12px; }
+.seo-section h3 { font-size: 1rem; margin: 20px 0 8px; }
+.seo-section p { color: var(--muted); margin-bottom: 8px; }
+.faq-section { margin-top: 40px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.faq-section h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 20px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 4px 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { width: 100%; text-align: left; background: none; border: none; padding: 14px 0; font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.faq-q:hover { color: var(--primary); }
+.faq-icon { font-size: 1.1rem; flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 14px; }
+footer { margin-top: 60px; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; color: var(--muted); }
+footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">Text<span>verktyget</span></a>
+    <a href="/" class="nav-link">← Alla verktyg</a>
+    <a href="https://ko-fi.com" target="_blank" rel="noopener" class="kofi-btn">☕ Stöd oss</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>LIX-kalkylator</h1>
+  <p class="page-desc">Beräkna LIX-värdet (Läsbarhetsindex) på din text direkt. Se om din text är lättläst, normalsvår eller svår — används av lärare, skribenter och journalister i hela Sverige.</p>
+
+  <div class="editor-wrap">
+    <textarea id="input" placeholder="Klistra in din text här för att beräkna LIX-värdet…" spellcheck="true"></textarea>
+    <span id="char-counter">0 tecken</span>
+  </div>
+
+  <!-- Big LIX display -->
+  <div class="lix-hero" id="lix-hero">
+    <div class="lix-big" id="lix-big">0</div>
+    <div class="lix-info">
+      <div class="lix-label-text" id="lix-label-text">Skriv text ovan</div>
+      <div class="lix-desc" id="lix-desc">LIX-värdet beräknas automatiskt</div>
+      <div class="lix-bar-wrap">
+        <div class="lix-bar-label"><span>Lättläst</span><span>Svår</span></div>
+        <div class="lix-bar"><div class="lix-pointer" id="lix-pointer" style="left:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-label">Ord</div><div class="stat-value" id="s-words">0</div></div>
+    <div class="stat-card"><div class="stat-label">Meningar</div><div class="stat-value" id="s-sent">0</div></div>
+    <div class="stat-card"><div class="stat-label">Långa ord (7+ bokst.)</div><div class="stat-value" id="s-long">0</div></div>
+    <div class="stat-card"><div class="stat-label">Gen. meningslängd</div><div class="stat-value" id="s-avg">0</div></div>
+  </div>
+
+  <a href="/" class="full-tool-link">✨ Fullständiga verktyget — ordräknare, Base64, sök &amp; ersätt och mer →</a>
+
+  <!-- AdSense -->
+  <div style="margin: 28px 0; text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6696113059842943" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="lix-table-section">
+    <h2>LIX-skalan – vad betyder olika värden?</h2>
+    <table>
+      <tr><th>LIX-värde</th><th>Klassificering</th><th>Typiska texter</th></tr>
+      <tr><td><strong>&lt; 25</strong></td><td><span class="badge badge-green">Mycket lättläst</span></td><td>Barnböcker, enkla instruktioner</td></tr>
+      <tr><td><strong>25–35</strong></td><td><span class="badge badge-green">Lättläst</span></td><td>Skönlitteratur, populärpress</td></tr>
+      <tr><td><strong>35–45</strong></td><td><span class="badge badge-yellow">Normalsvår</span></td><td>Dagstidningar, läroböcker</td></tr>
+      <tr><td><strong>45–55</strong></td><td><span class="badge badge-orange">Svår</span></td><td>Facklitteratur, myndighetstext</td></tr>
+      <tr><td><strong>&gt; 55</strong></td><td><span class="badge badge-red">Mycket svår</span></td><td>Vetenskapliga artiklar, juridik</td></tr>
+    </table>
+  </section>
+
+  <section class="seo-section">
+    <h2>Vad är LIX och varför spelar det roll?</h2>
+    <p><strong>LIX</strong> (Läsbarhetsindex) är ett numeriskt mått på hur svår en text är att läsa. Det togs fram av den svenske pedagogen Carl-Hugo Björnsson på 1960-talet och används fortfarande flitigt i Sverige — av lärare, journalister, UX-skribenter och myndigheter.</p>
+
+    <h3>Hur beräknas LIX?</h3>
+    <p>Formeln är: <strong>LIX = (O/M) + (L×100/O)</strong></p>
+    <p>Där: <strong>O</strong> = antal ord, <strong>M</strong> = antal meningar, <strong>L</strong> = antal långa ord (7 bokstäver eller fler).</p>
+    <p>Vår LIX-kalkylator gör uträkningen automatiskt — klistra bara in texten ovan.</p>
+
+    <h3>Vilket LIX ska min text ha?</h3>
+    <p>Det beror på din målgrupp. Generellt gäller: ju lägre LIX, desto fler kan läsa texten. För en bred publik sikta på LIX 30–40. För en akademisk artikel är LIX 50–60 normalt. Undvik LIX över 70 — sådana texter är extremt svårlästa för de flesta.</p>
+
+    <h3>Hur sänker jag mitt LIX?</h3>
+    <p>Tre snabba sätt: (1) Dela upp långa meningar i kortare. (2) Använd kortare synonymer till långa ord (t.ex. "använda" istället för "implementera"). (3) Ta bort onödiga bisatser och parenteser.</p>
+  </section>
+
+  <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+    <h2>Vanliga frågor om LIX</h2>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Vad är LIX?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">LIX (Läsbarhetsindex) är ett mått på hur svår en text är att läsa. Det beräknas utifrån meningslängd och andelen långa ord. Framtaget av Carl-Hugo Björnsson på 1960-talet.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Vilket LIX-värde är bra?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Under 25 = mycket lättläst (barnböcker). 25–35 = lättläst. 35–45 = normalsvår (dagstidningar). 45–55 = svår. Över 55 = mycket svår (akademisk text). Sikta på under 40 för bred publik.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur beräknar man LIX?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">LIX = (antal ord ÷ antal meningar) + (antal långa ord med 7+ bokstäver × 100 ÷ antal ord). Använd kalkylatorn ovan så räknas det ut automatiskt.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Vad är bra LIX för en gymnasieuppsats?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">En gymnasieuppsats bör ha LIX 35–45. En akademisk C- eller D-uppsats hamnar ofta på 45–55. Undvik extremt höga värden — det gör texten onödigt svårläst.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Textverktyget.se · <a href="/">Alla textverktyg</a> · <a href="/ordraknare.html">Ordräknare</a> · <a href="/integritetspolicy.html">Integritetspolicy</a></p>
+</footer>
+
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const debounce = (fn, ms=120) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+
+function countWords(t) { return t.trim() ? t.trim().split(/\s+/).length : 0; }
+function countSentences(t) { return (t.match(/[.!?…]+(?=\s|$)/g)||[]).length || (t.trim() ? 1 : 0); }
+function countLong(t) { return (t.match(/\b[\p{L}]{7,}\b/gu)||[]).length; }
+function computeLix(t) {
+  const w = countWords(t); if (!w) return 0;
+  const s = countSentences(t)||1;
+  const l = countLong(t);
+  return Math.round(w/s + (l*100)/w);
+}
+
+const LIX_INFO = [
+  { max: 25, label: 'Mycket lättläst', desc: 'Barnböcker, enkla instruktioner', color: '#16a34a', pct: 12 },
+  { max: 35, label: 'Lättläst', desc: 'Skönlitteratur, populärpress', color: '#65a30d', pct: 30 },
+  { max: 45, label: 'Normalsvår', desc: 'Dagstidningar, läroböcker', color: '#d97706', pct: 52 },
+  { max: 55, label: 'Svår', desc: 'Facklitteratur, myndighetstext', color: '#ea580c', pct: 72 },
+  { max: 999, label: 'Mycket svår', desc: 'Vetenskapliga artiklar, juridik', color: '#dc2626', pct: 92 },
+];
+
+function analyze() {
+  const t = $('input').value;
+  const w = countWords(t);
+  const s = countSentences(t);
+  const l = countLong(t);
+  const lix = computeLix(t);
+  const avg = s && w ? (w/s).toFixed(1) : 0;
+
+  $('char-counter').textContent = t.length + ' tecken';
+  $('s-words').textContent = w;
+  $('s-sent').textContent = s;
+  $('s-long').textContent = l;
+  $('s-avg').textContent = avg;
+  $('lix-big').textContent = lix;
+
+  const info = LIX_INFO.find(x => lix <= x.max) || LIX_INFO[LIX_INFO.length-1];
+  $('lix-label-text').textContent = lix ? info.label : 'Skriv text ovan';
+  $('lix-desc').textContent = lix ? info.desc : 'LIX-värdet beräknas automatiskt';
+  $('lix-big').style.color = lix ? info.color : 'var(--primary)';
+  const pct = Math.min(lix ? info.pct : 0, 95);
+  $('lix-pointer').style.left = pct + '%';
+}
+
+$('input').addEventListener('input', debounce(analyze));
+analyze();
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  });
+});
+</script>
+</body>
+</html>
