@@ -26,6 +26,18 @@
 "offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"},"description":"Gratis ordräknare och textanalys på svenska"}
 </script>
 
+<!-- FAQPage schema for Google rich snippets -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Hur räknar jag ord gratis online?","acceptedAnswer":{"@type":"Answer","text":"Klistra in din text i rutan på Textverktyget.se så räknas ord, tecken och meningar automatiskt i realtid. Verktyget är helt gratis och kräver ingen inloggning."}},
+{"@type":"Question","name":"Vad är LIX och hur beräknas det?","acceptedAnswer":{"@type":"Answer","text":"LIX (Läsbarhetsindex) är ett mått på hur svår en text är att läsa. Det beräknas som: antal ord / antal meningar + (antal långa ord × 100) / antal ord. Under 30 = lättläst, 30–50 = normalsvår, över 50 = svår."}},
+{"@type":"Question","name":"Lagras min text när jag använder Textverktyget?","acceptedAnswer":{"@type":"Answer","text":"Nej, ingen text lagras eller skickas till någon server. All beräkning sker lokalt i din webbläsare. Din text är helt privat."}},
+{"@type":"Question","name":"Kan jag använda verktyget på mobilen?","acceptedAnswer":{"@type":"Answer","text":"Ja, Textverktyget.se är fullt responsivt och fungerar på alla enheter – mobil, surfplatta och dator – utan att installera någon app."}},
+{"@type":"Question","name":"Hur konverterar jag text till versaler eller gemener?","acceptedAnswer":{"@type":"Answer","text":"Klistra in din text i Textverktyget och klicka på fliken 'Omvandla'. Välj sedan VERSALER, gemener, Title Case, Meningsfall eller Toggle Case."}},
+{"@type":"Question","name":"Vad används Base64-konvertering till?","acceptedAnswer":{"@type":"Answer","text":"Base64 används för att koda text eller data till ett format som är säkert att skicka via e-post eller URL:er. Det används ofta av webbutvecklare och inom IT."}}
+]}
+</script>
+
 <style>
 :root {
   --primary: #1755f4;
@@ -380,6 +392,53 @@ header {
 .seo-section ul { padding-left: 20px; color: var(--muted); }
 .seo-section ul li { margin-bottom: 4px; }
 
+/* ── FAQ section ── */
+.faq-section {
+  margin-top: 40px;
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.faq-section h2 { font-size: 1.4rem; color: var(--primary); margin-bottom: 20px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 4px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 14px 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.faq-q:hover { color: var(--primary); }
+.faq-icon { font-size: 1.1rem; flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 0;
+}
+.faq-item.open .faq-a {
+  max-height: 200px;
+  padding-bottom: 14px;
+}
+
 /* ── Footer ── */
 footer {
   margin-top: 60px;
@@ -626,13 +685,19 @@ footer {
   <!-- ── SEO TEXT ── -->
   <section class="seo-section">
     <h2>Gratis ordräknare och textanalys på svenska</h2>
-    <p>Välkommen till <strong>Textverktyget.se</strong> – det kompletta gratisverktyget för dig som jobbar med text. Räkna ord, tecken, meningar och stycken, analysera LIX-värde och lästid, samt använd dussintalet inbyggda textverktyg för att omvandla, rensa och manipulera din text.</p>
+    <p>Välkommen till <strong>Textverktyget.se</strong> – det kompletta gratisverktyget för dig som jobbar med text på svenska. Här kan du snabbt och enkelt <strong>räkna ord</strong>, <strong>räkna tecken</strong>, analysera meningar och stycken, beräkna <strong>LIX-värde</strong> och <strong>lästid</strong> – utan att installera något program.</p>
 
     <h3>Varför Textverktyget?</h3>
-    <!-- FIX: Translated this paragraph from English to Swedish -->
-    <p>Till skillnad från många liknande tjänster körs alla beräkningar och all texthantering helt i din webbläsare. Ingen text skickas till en server och ingenting lagras. Din text är helt privat.</p>
+    <p>Till skillnad från många liknande tjänster körs alla beräkningar och all texthantering helt i din webbläsare. Ingen text skickas till en server och ingenting lagras. Din text är helt privat och säker.</p>
+    <p>Verktyget är perfekt för <strong>elever och studenter</strong> som behöver räkna ord i uppsatser, <strong>journalister och bloggare</strong> som skriver artiklar med teckenbegränsningar, och <strong>webbutvecklare</strong> som behöver Base64-konvertering eller regex-sök.</p>
 
-    <h3>Funktioner</h3>
+    <h3>Vad är LIX?</h3>
+    <p><strong>LIX (Läsbarhetsindex)</strong> är ett vanligt mått på hur lättläst en text är, framtaget av den svenske pedagogen Carl-Hugo Björnsson. Det beräknas utifrån meningslängd och andelen långa ord. Ett LIX-värde under 30 klassas som mycket lättläst (barnböcker), 30–45 som normalsvår (dagstidningar) och över 55 som mycket svår (akademiska texter).</p>
+
+    <h3>Hur räknar man tecken?</h3>
+    <p>Textverktyget visar tecken <strong>med</strong> och <strong>utan blanksteg</strong> i realtid. Teckenräkning utan blanksteg är viktigt t.ex. för Twitter/X, Instagram-bios och SMS, medan teckenräkning med blanksteg används i många textbearbetningsprogram.</p>
+
+    <h3>Alla funktioner</h3>
     <ul>
       <li><strong>Ordräknare &amp; teckenräknare:</strong> Perfekt för skoluppgifter, artiklar och sociala medier.</li>
       <li><strong>LIX-analys:</strong> Se hur läsbar din text är – ett mått som används flitigt i Sverige.</li>
@@ -646,6 +711,42 @@ footer {
       <li><strong>Lorem Ipsum:</strong> Generera dummytext med valfritt antal ord, meningar eller stycken.</li>
       <li><strong>Textjämförelse:</strong> Jämför två texter och se vad som lagts till och tagits bort.</li>
     </ul>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+    <h2>Vanliga frågor om Textverktyget</h2>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur räknar jag ord gratis online?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Klistra in din text i rutan ovanför så räknas ord, tecken och meningar automatiskt i realtid. Verktyget är helt gratis, kräver ingen inloggning och fungerar direkt i webbläsaren.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Vad är LIX och hur beräknas det?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">LIX (Läsbarhetsindex) mäter hur svår en text är att läsa. Formeln är: <em>antal ord ÷ antal meningar + (antal långa ord × 100) ÷ antal ord</em>. Under 30 = mycket lättläst, 30–45 = normalsvår, över 55 = mycket svår text.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Lagras min text när jag använder verktyget?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Nej, absolut inte. All textbearbetning sker helt lokalt i din webbläsare. Ingen text skickas till någon server och ingenting sparas. Din text är helt privat.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Fungerar verktyget på mobil?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Ja! Textverktyget.se är fullt responsivt och fungerar på alla enheter – mobil, surfplatta och dator – utan att du behöver installera någon app.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur konverterar jag text till versaler eller gemener?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Klistra in din text och klicka på fliken "Omvandla". Välj sedan VERSALER, gemener, Title Case, Meningsfall eller Toggle Case – texten uppdateras direkt.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Vad är Base64 och till vad används det?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Base64 är ett sätt att koda text eller data till ett format som är säkert att skicka via e-post eller URL:er. Det används ofta av webbutvecklare och inom IT-säkerhet. Med Textverktyget kan du enkoda och dekoda Base64 med ett klick.</p></div>
+    </div>
+
   </section>
 
   <!-- ── AdSense annons 2 – nedre ── -->
@@ -1000,6 +1101,22 @@ $('btn-diff').addEventListener('click', () => {
 function escHtml(s){
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
+
+// ─── FAQ Accordion ──────────────────────────────────────────
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
 
 // ─── Tabs ───────────────────────────────────────────────────
 document.querySelectorAll('.tab-btn').forEach(btn => {
