@@ -4,13 +4,19 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://textverktyget.se/</loc>
-  <lastmod>2025-06-25T19:54:03+00:00</lastmod>
+  <lastmod>2026-03-25T21:58:00+01:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>1.0</priority>
 </url>
 
+<url>
+  <loc>https://textverktyget.se/integritetspolicy.html</loc>
+  <lastmod>2026-03-25T21:58:00+01:00</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.3</priority>
+</url>
 
 </urlset>

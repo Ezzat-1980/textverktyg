@@ -15,7 +15,8 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- font-display:swap for faster LCP (Core Web Vitals) -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap&font-display=swap" rel="stylesheet">
 
 <!-- ===== GOOGLE ADSENSE ===== -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6696113059842943" crossorigin="anonymous"></script>
@@ -115,6 +116,22 @@ header {
 @media (prefers-color-scheme: dark) {
   .trust-badge { background: #052e16; border-color: #166534; color: #4ade80; }
 }
+.kofi-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: #ff5e5b;
+  color: #fff !important;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.kofi-btn:hover { background: #e04a47; transform: scale(1.03); }
 
 /* ── Main layout ── */
 .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
@@ -470,6 +487,7 @@ footer {
   <div class="header-inner">
     <a href="/" class="logo">Text<span>verktyget</span></a>
     <div class="trust-badge" aria-live="polite">🔒 Allt sker lokalt – ingen text skickas</div>
+    <a href="https://ko-fi.com" target="_blank" rel="noopener" class="kofi-btn" title="Stöd Textverktyget med en kaffe!">☕ Stöd oss</a>
   </div>
 </header>
 
@@ -763,6 +781,7 @@ footer {
 
 <footer>
   <p>© 2025 Textverktyget.se · Gratis textanalys på svenska · Ingen text lagras</p>
+  <p style="margin-top:6px;"><a href="/integritetspolicy.html" style="color:var(--muted); text-decoration:underline;">Integritetspolicy</a></p>
 </footer>
 
 <div id="toast" role="alert" aria-live="assertive"></div>
