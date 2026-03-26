@@ -7,28 +7,35 @@
 
 <url>
   <loc>https://textverktyget.se/</loc>
-  <lastmod>2026-03-25T22:03:00+01:00</lastmod>
+  <lastmod>2026-03-25T22:18:00+01:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>1.0</priority>
 </url>
 
 <url>
   <loc>https://textverktyget.se/ordraknare.html</loc>
-  <lastmod>2026-03-25T22:03:00+01:00</lastmod>
+  <lastmod>2026-03-25T22:18:00+01:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
+  <priority>0.9</priority>
 </url>
 
 <url>
   <loc>https://textverktyget.se/lix-kalkylator.html</loc>
-  <lastmod>2026-03-25T22:03:00+01:00</lastmod>
+  <lastmod>2026-03-25T22:18:00+01:00</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
+  <priority>0.9</priority>
+</url>
+
+<url>
+  <loc>https://textverktyget.se/teckenraknare.html</loc>
+  <lastmod>2026-03-25T22:18:00+01:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.9</priority>
 </url>
 
 <url>
   <loc>https://textverktyget.se/integritetspolicy.html</loc>
-  <lastmod>2026-03-25T22:03:00+01:00</lastmod>
+  <lastmod>2026-03-25T22:18:00+01:00</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.3</priority>
 </url>

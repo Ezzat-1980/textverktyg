@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gratis Teckenräknare – Räkna tecken online | Textverktyget.se</title>
+<meta name="description" content="Räkna tecken gratis online – med och utan mellanslag. Perfekt för Twitter, Instagram, SMS och LinkedIn. Ingen text lagras.">
+<meta property="og:title" content="Gratis Teckenräknare – Räkna tecken online">
+<meta property="og:description" content="Räkna tecken med och utan mellanslag. Direkt i webbläsaren, gratis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textverktyget.se/teckenraknare.html">
+<link rel="canonical" href="https://textverktyget.se/teckenraknare.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap&font-display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6696113059842943" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Teckenräknare – Textverktyget",
+"url":"https://textverktyget.se/teckenraknare.html","applicationCategory":"Utilities","operatingSystem":"Web",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"},"description":"Gratis teckenräknare online för svenska texter"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Hur räknar man tecken online gratis?","acceptedAnswer":{"@type":"Answer","text":"Klistra in din text i rutan på teckenraknare.html på Textverktyget.se. Antalet tecken visas direkt, både med och utan mellanslag."}},
+{"@type":"Question","name":"Hur många tecken är Twitter/X-gränsen?","acceptedAnswer":{"@type":"Answer","text":"Twitter/X tillåter maximalt 280 tecken per tweet för gratiskonton."}},
+{"@type":"Question","name":"Hur många tecken är Instagram-gränsen?","acceptedAnswer":{"@type":"Answer","text":"Instagram tillåter upp till 2 200 tecken i en bildtext (caption). Texten trunkeras efter 125 tecken i flödet."}},
+{"@type":"Question","name":"Hur många tecken är ett SMS?","acceptedAnswer":{"@type":"Answer","text":"Ett standard-SMS är 160 tecken med ASCII-kodning. Använder du å, ä, ö eller andra specialtecken sjunker gränsen till 70 tecken per meddelande."}}
+]}
+</script>
+<style>
+:root {
+  --primary: #1755f4; --primary-dark: #0d3fc2;
+  --bg: #f7f8fc; --surface: #ffffff; --border: #e4e7ef;
+  --text: #111827; --muted: #6b7280;
+  --radius: 12px; --gap: 12px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0d0f14; --surface: #161b25; --border: #232b3a; --text: #e8eaf0; --muted: #8892a4; }
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 20px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; height: 56px; }
+.logo { font-size: 1.25rem; font-weight: 700; color: var(--text); text-decoration: none; }
+.logo span { color: var(--primary); }
+.nav-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; font-weight: 600; }
+.nav-link:hover { color: var(--primary); }
+.kofi-btn { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: #ff5e5b; color: #fff !important; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-decoration: none; transition: background 0.15s; }
+.kofi-btn:hover { background: #e04a47; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+.page-desc { color: var(--muted); margin-bottom: 20px; }
+.editor-wrap { position: relative; }
+#input { width: 100%; min-height: 200px; padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); resize: vertical; outline: none; transition: border-color 0.2s; }
+#input:focus { border-color: var(--primary); }
+
+/* Big char display */
+.char-hero { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+@media(max-width:500px){ .char-hero { grid-template-columns: 1fr; } }
+.char-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 24px; text-align: center; transition: border-color 0.2s; }
+.char-card.primary-card { border-color: var(--primary); }
+.char-num { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1; font-variant-numeric: tabular-nums; }
+.char-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 6px; }
+
+/* Platform limits */
+.limits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--gap); margin-top: var(--gap); }
+.limit-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.limit-name { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.limit-bar-wrap { position: relative; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.limit-bar-fill { height: 100%; border-radius: 4px; background: var(--primary); transition: width 0.4s; }
+.limit-bar-fill.over { background: #dc2626; }
+.limit-numbers { display: flex; justify-content: space-between; font-size: 0.78rem; }
+.limit-current { font-weight: 700; color: var(--text); }
+.limit-max { color: var(--muted); }
+
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: var(--gap); margin-top: var(--gap); }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stat-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 6px; }
+.stat-value { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.btn { padding: 9px 16px; font-family: inherit; font-size: 0.85rem; font-weight: 600; border: 1.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+.btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn.danger:hover { background: #dc2626; border-color: #dc2626; }
+
+.full-tool-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 12px 20px; background: var(--primary); color: #fff; border-radius: var(--radius); font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: background 0.15s; }
+.full-tool-link:hover { background: var(--primary-dark); }
+
+.seo-section { margin-top: 60px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.seo-section h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 12px; }
+.seo-section h3 { font-size: 1rem; margin: 20px 0 8px; }
+.seo-section p { color: var(--muted); margin-bottom: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 12px 0; }
+th { text-align: left; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); font-weight: 700; }
+td { padding: 10px 14px; border: 1px solid var(--border); color: var(--muted); }
+
+.faq-section { margin-top: 40px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.faq-section h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 20px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 4px 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { width: 100%; text-align: left; background: none; border: none; padding: 14px 0; font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.faq-q:hover { color: var(--primary); }
+.faq-icon { font-size: 1.1rem; flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 14px; }
+footer { margin-top: 60px; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; color: var(--muted); }
+footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">Text<span>verktyget</span></a>
+    <a href="/" class="nav-link">← Alla verktyg</a>
+    <a href="https://ko-fi.com" target="_blank" rel="noopener" class="kofi-btn">☕ Stöd oss</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Gratis Teckenräknare</h1>
+  <p class="page-desc">Klistra in din text och se antal tecken direkt — med och utan mellanslag. Se hur nära du är gränserna för Twitter, Instagram, SMS och LinkedIn.</p>
+
+  <div class="editor-wrap">
+    <textarea id="input" placeholder="Klistra in eller skriv din text här…" spellcheck="true"></textarea>
+  </div>
+
+  <!-- Big char numbers -->
+  <div class="char-hero">
+    <div class="char-card primary-card">
+      <div class="char-num" id="c-total">0</div>
+      <div class="char-label">Tecken (med mellanslag)</div>
+    </div>
+    <div class="char-card">
+      <div class="char-num" id="c-nospace">0</div>
+      <div class="char-label">Tecken (utan mellanslag)</div>
+    </div>
+  </div>
+
+  <!-- Platform limits -->
+  <p style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-top:20px;margin-bottom:8px;">Plattformsgränser</p>
+  <div class="limits-grid">
+    <div class="limit-card">
+      <div class="limit-name">Twitter / X</div>
+      <div class="limit-bar-wrap"><div class="limit-bar-fill" id="bar-twitter" style="width:0%"></div></div>
+      <div class="limit-numbers"><span class="limit-current" id="num-twitter">0</span><span class="limit-max">/ 280</span></div>
+    </div>
+    <div class="limit-card">
+      <div class="limit-name">Instagram Caption</div>
+      <div class="limit-bar-wrap"><div class="limit-bar-fill" id="bar-ig" style="width:0%"></div></div>
+      <div class="limit-numbers"><span class="limit-current" id="num-ig">0</span><span class="limit-max">/ 2 200</span></div>
+    </div>
+    <div class="limit-card">
+      <div class="limit-name">LinkedIn Inlägg</div>
+      <div class="limit-bar-wrap"><div class="limit-bar-fill" id="bar-li" style="width:0%"></div></div>
+      <div class="limit-numbers"><span class="limit-current" id="num-li">0</span><span class="limit-max">/ 3 000</span></div>
+    </div>
+    <div class="limit-card">
+      <div class="limit-name">SMS (svenska tecken)</div>
+      <div class="limit-bar-wrap"><div class="limit-bar-fill" id="bar-sms" style="width:0%"></div></div>
+      <div class="limit-numbers"><span class="limit-current" id="num-sms">0</span><span class="limit-max">/ 70</span></div>
+    </div>
+    <div class="limit-card">
+      <div class="limit-name">Meta description</div>
+      <div class="limit-bar-wrap"><div class="limit-bar-fill" id="bar-meta" style="width:0%"></div></div>
+      <div class="limit-numbers"><span class="limit-current" id="num-meta">0</span><span class="limit-max">/ 160</span></div>
+    </div>
+    <div class="limit-card">
+      <div class="limit-name">Google Ads rubrik</div>
+      <div class="limit-bar-wrap"><div class="limit-bar-fill" id="bar-ads" style="width:0%"></div></div>
+      <div class="limit-numbers"><span class="limit-current" id="num-ads">0</span><span class="limit-max">/ 30</span></div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-label">Ord</div><div class="stat-value" id="s-words">0</div></div>
+    <div class="stat-card"><div class="stat-label">Rader</div><div class="stat-value" id="s-lines">0</div></div>
+    <div class="stat-card"><div class="stat-label">Meningar</div><div class="stat-value" id="s-sent">0</div></div>
+    <div class="stat-card"><div class="stat-label">Stycken</div><div class="stat-value" id="s-para">0</div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" id="btn-copy">📋 Kopiera text</button>
+    <button class="btn danger" id="btn-clear">🗑 Rensa</button>
+    <button class="btn" id="btn-rm-spaces">Ta bort extra mellanslag</button>
+  </div>
+
+  <a href="/" class="full-tool-link">✨ Fullständiga verktyget – LIX, Base64, Sök &amp; Ersätt och mer →</a>
+
+  <div style="margin:28px 0;text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6696113059842943" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="seo-section">
+    <h2>Teckenräknare – allt om teckengränser online</h2>
+    <p>En <strong>teckenräknare</strong> är ett enkelt men ovärderligt verktyg för alla som skriver för digitala plattformar. Oavsett om du skriver tweets, Instagram-texter, LinkedIn-inlägg, e-postrubriker eller SMS — har varje plattform sin teckengräns.</p>
+
+    <h3>Teckengränser per plattform</h3>
+    <table>
+      <tr><th>Plattform</th><th>Max tecken</th><th>Notering</th></tr>
+      <tr><td>Twitter / X</td><td>280</td><td>Gratis konton</td></tr>
+      <tr><td>Instagram caption</td><td>2 200</td><td>Trunkeras vid 125 i flödet</td></tr>
+      <tr><td>LinkedIn inlägg</td><td>3 000</td><td>Trunkeras vid 210 i flödet</td></tr>
+      <tr><td>Facebook inlägg</td><td>63 206</td><td>Praktiskt ingen gräns</td></tr>
+      <tr><td>SMS (ASCII)</td><td>160</td><td>Engelska bokstäver</td></tr>
+      <tr><td>SMS (Unicode/svenska)</td><td>70</td><td>å, ä, ö utlöser Unicode</td></tr>
+      <tr><td>Meta description</td><td>160</td><td>Google visar ca 155–160</td></tr>
+      <tr><td>Google Ads – rubrik</td><td>30</td><td>Per rubrikfält</td></tr>
+      <tr><td>Google Ads – beskrivning</td><td>90</td><td>Per beskrivningsfält</td></tr>
+      <tr><td>E-postämnesrad</td><td>60</td><td>Rekommenderat för mobil</td></tr>
+    </table>
+
+    <h3>Tecken med vs. utan mellanslag</h3>
+    <p>Vissa plattformar räknar tecken <strong>med mellanslag</strong> (vanligast), medan t.ex. certain printing systems räknar <strong>utan mellanslag</strong>. Vår teckenräknare visar båda varianterna direkt.</p>
+  </section>
+
+  <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+    <h2>Vanliga frågor om teckenräkning</h2>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur räknar man tecken online gratis?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Klistra in din text i rutan ovan — tecken räknas direkt och automatiskt, med och utan mellanslag. Helt gratis.</p></div>
+    </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur många tecken är Twitter-gränsen?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Twitter/X tillåter 280 tecken per tweet för gratiskonton. Länkarna räknas som 23 tecken oavsett hur långa de är.</p></div>
+    </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur många tecken är ett SMS?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Ett SMS-meddelande är 160 tecken med ASCII-kodning. Använder du å, ä, ö eller andra specialtecken aktiveras Unicode och gränsen sjunker till 70 tecken per SMS-del.</p></div>
+    </div>
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur många tecken är Instagram-gränsen?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Instagram tillåter upp till 2 200 tecken i en bildtext. I flödet visas dock bara de första 125 tecknen innan användaren måste klicka "mer".</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Textverktyget.se · <a href="/">Alla verktyg</a> · <a href="/ordraknare.html">Ordräknare</a> · <a href="/lix-kalkylator.html">LIX-kalkylator</a> · <a href="/integritetspolicy.html">Integritetspolicy</a></p>
+</footer>
+
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const debounce = (fn, ms=120) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+
+const LIMITS = [
+  { id: 'twitter', max: 280 },
+  { id: 'ig',      max: 2200 },
+  { id: 'li',      max: 3000 },
+  { id: 'sms',     max: 70 },
+  { id: 'meta',    max: 160 },
+  { id: 'ads',     max: 30 },
+];
+
+function analyze() {
+  const t = $('input').value;
+  const total = t.length;
+  const noSpace = t.replace(/\s/g,'').length;
+  const words = t.trim() ? t.trim().split(/\s+/).length : 0;
+  const lines = t ? t.split('\n').length : 0;
+  const sent = (t.match(/[.!?…]+(?=\s|$)/g)||[]).length || (t.trim() ? 1 : 0);
+  const para = t.trim() ? t.trim().split(/\n{2,}/).filter(x=>x.trim()).length : 0;
+
+  $('c-total').textContent = total;
+  $('c-nospace').textContent = noSpace;
+  $('s-words').textContent = words;
+  $('s-lines').textContent = lines;
+  $('s-sent').textContent = sent;
+  $('s-para').textContent = para;
+
+  LIMITS.forEach(({id, max}) => {
+    const pct = Math.min((total/max)*100, 100);
+    const bar = $('bar-' + id);
+    bar.style.width = pct + '%';
+    bar.classList.toggle('over', total > max);
+    $('num-' + id).textContent = total;
+    $('num-' + id).style.color = total > max ? '#dc2626' : 'var(--text)';
+  });
+}
+
+$('input').addEventListener('input', debounce(analyze));
+analyze();
+
+$('btn-copy').addEventListener('click', () => { navigator.clipboard.writeText($('input').value); });
+$('btn-clear').addEventListener('click', () => { $('input').value = ''; analyze(); $('input').focus(); });
+$('btn-rm-spaces').addEventListener('click', () => { $('input').value = $('input').value.replace(/[ \t]{2,}/g,' ').trim(); analyze(); });
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  });
+});
+</script>
+</body>
+</html>
