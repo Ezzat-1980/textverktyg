@@ -479,6 +479,34 @@ footer {
   color: var(--muted);
   font-size: 0.75rem;
 }
+
+/* ── Tools hub ── */
+.tools-hub {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--gap);
+}
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.tool-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.tool-card-icon { font-size: 1.4rem; }
+.tool-card-title { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+.tool-card-desc { font-size: 0.78rem; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -511,6 +539,25 @@ footer {
     <div class="stat-card" id="lix-card"><div class="stat-label">LIX <span id="lix-label" style="font-weight:400;text-transform:none;letter-spacing:0"></span></div><div class="stat-value" id="s-lix">0</div></div>
     <div class="stat-card"><div class="stat-label">Lästid</div><div class="stat-value" id="s-read">0 min</div></div>
   </section>
+
+  <!-- ── DEDIKERADE VERKTYG ── -->
+  <div class="tools-hub" aria-label="Dedikerade verktyg">
+    <a href="/ordraknare.html" class="tool-card">
+      <span class="tool-card-icon">📝</span>
+      <span class="tool-card-title">Ordräknare</span>
+      <span class="tool-card-desc">Räkna ord, tecken &amp; meningar – med tabeller &amp; FAQ</span>
+    </a>
+    <a href="/lix-kalkylator.html" class="tool-card">
+      <span class="tool-card-icon">📊</span>
+      <span class="tool-card-title">LIX-kalkylator</span>
+      <span class="tool-card-desc">Beräkna läsbarhet med animerad LIX-mätare</span>
+    </a>
+    <a href="/teckenraknare.html" class="tool-card">
+      <span class="tool-card-icon">✨</span>
+      <span class="tool-card-title">Teckenräknare</span>
+      <span class="tool-card-desc">Twitter, Instagram, SMS &amp; LinkedIn – live gränser</span>
+    </a>
+  </div>
 
   <!-- ── TOOLS ── -->
   <section class="tools-section">
