@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gratis Meningsräknare – Räkna meningar online | Textverktyget.se</title>
+<meta name="description" content="Räkna meningar gratis online på svenska. Klistra in din text och se antal meningar, stycken, genomsnittlig meningslängd och lästid. Ingen text lagras.">
+<meta property="og:title" content="Gratis Meningsräknare – Räkna meningar online">
+<meta property="og:description" content="Räkna meningar, stycken och meningslängd gratis online. Allt sker lokalt i din webbläsare.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textverktyget.se/meningsraknare.html">
+<link rel="canonical" href="https://textverktyget.se/meningsraknare.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap&font-display=swap" rel="stylesheet">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6696113059842943" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Meningsräknare – Textverktyget",
+"url":"https://textverktyget.se/meningsraknare.html","applicationCategory":"Utilities","operatingSystem":"Web",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"SEK"},"description":"Gratis meningsräknare på svenska"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Hur räknar jag meningar gratis?","acceptedAnswer":{"@type":"Answer","text":"Klistra in din text i rutan på den här sidan. Antalet meningar räknas automatiskt och direkt. Verktyget är helt gratis och kräver ingen inloggning."}},
+{"@type":"Question","name":"Hur lång ska en mening vara?","acceptedAnswer":{"@type":"Answer","text":"En lättläst mening har 10–20 ord. Dagstidningar och lättlästa texter har i snitt 14–18 ord per mening. Akademiska texter kan ha 25+ ord per mening, vilket gör dem svårare att läsa."}},
+{"@type":"Question","name":"Vad är en genomsnittlig meningslängd?","acceptedAnswer":{"@type":"Answer","text":"Genomsnittlig meningslängd (ord per mening) är ett mått på textkomplexitet. Under 15 ord per mening = lättläst. 15–20 = normalsvår. Över 25 = svår text."}},
+{"@type":"Question","name":"Hur förbättrar jag min texts läsbarhet?","acceptedAnswer":{"@type":"Answer","text":"Dela upp långa meningar i kortare. Sikta på max 20 ord per mening för en bred publik. Undvik bisatser i bisatser. Använd aktiv röst istället för passiv."}}
+]}
+</script>
+<style>
+:root {
+  --primary: #1755f4;
+  --primary-dark: #0d3fc2;
+  --accent: #f04e3e;
+  --bg: #f7f8fc;
+  --surface: #ffffff;
+  --border: #e4e7ef;
+  --text: #111827;
+  --muted: #6b7280;
+  --stat-bg: #ffffff;
+  --radius: 12px;
+  --gap: 12px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0d0f14; --surface: #161b25; --border: #232b3a; --text: #e8eaf0; --muted: #8892a4; --stat-bg: #1a2235; --shadow: 0 1px 4px rgba(0,0,0,0.4); }
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 20px; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+.header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; height: 56px; }
+.logo { font-size: 1.25rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+.logo span { color: var(--primary); }
+.nav-link { font-size: 0.82rem; color: var(--muted); text-decoration: none; font-weight: 600; }
+.nav-link:hover { color: var(--primary); }
+.kofi-btn { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: #ff5e5b; color: #fff !important; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background 0.15s; }
+.kofi-btn:hover { background: #e04a47; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.02em; }
+.page-desc { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
+.editor-wrap { position: relative; }
+#input { width: 100%; min-height: 220px; padding: 16px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 1.7; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); resize: vertical; transition: border-color 0.2s; outline: none; }
+#input:focus { border-color: var(--primary); }
+
+/* Big sentence display */
+.sent-hero { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
+@media(max-width:500px){ .sent-hero { grid-template-columns: 1fr; } }
+.sent-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 24px; text-align: center; transition: border-color 0.2s; }
+.sent-card.primary-card { border-color: var(--primary); }
+.sent-num { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1; font-variant-numeric: tabular-nums; }
+.sent-label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 6px; }
+
+/* Avg sentence meter */
+.avg-meter { margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; }
+.avg-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.avg-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.avg-value { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+.avg-label { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.avg-bar-wrap { height: 10px; border-radius: 99px; background: linear-gradient(to right, #16a34a, #84cc16, #facc15, #f97316, #dc2626); position: relative; }
+.avg-pointer { position: absolute; top: -5px; width: 4px; height: 20px; background: var(--text); border-radius: 2px; transform: translateX(-50%); transition: left 0.4s; }
+.avg-bar-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: var(--gap); margin-top: var(--gap); }
+.stat-card { background: var(--stat-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stat-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 6px; }
+.stat-value { font-size: 1.4rem; font-weight: 700; color: var(--primary); line-height: 1; font-variant-numeric: tabular-nums; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.btn { padding: 9px 16px; font-family: inherit; font-size: 0.85rem; font-weight: 600; border: 1.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+.btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn.primary:hover { background: var(--primary-dark); }
+
+.full-tool-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 12px 20px; background: var(--primary); color: #fff; border-radius: var(--radius); font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: background 0.15s; }
+.full-tool-link:hover { background: var(--primary-dark); }
+
+.seo-section { margin-top: 60px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.seo-section h2 { font-size: 1.4rem; color: var(--primary); margin-bottom: 12px; }
+.seo-section h3 { font-size: 1rem; margin: 20px 0 8px; }
+.seo-section p { color: var(--muted); margin-bottom: 8px; }
+.seo-section table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; }
+.seo-section th { text-align: left; padding: 8px 12px; background: var(--bg); border: 1px solid var(--border); font-weight: 600; }
+.seo-section td { padding: 8px 12px; border: 1px solid var(--border); color: var(--muted); }
+
+.faq-section { margin-top: 40px; padding: 40px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.faq-section h2 { font-size: 1.4rem; color: var(--primary); margin-bottom: 20px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 4px 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { width: 100%; text-align: left; background: none; border: none; padding: 14px 0; font-family: inherit; font-size: 0.95rem; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.faq-q:hover { color: var(--primary); }
+.faq-icon { font-size: 1.1rem; flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 14px; }
+
+footer { margin-top: 60px; padding: 24px 20px; border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; color: var(--muted); }
+footer a { color: var(--muted); }
+#toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: #1f2937; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; opacity: 0; transition: transform 0.3s, opacity 0.3s; pointer-events: none; z-index: 999; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">Text<span>verktyget</span></a>
+    <a href="/" class="nav-link">← Alla verktyg</a>
+    <a href="https://ko-fi.com" target="_blank" rel="noopener" class="kofi-btn" title="Stöd Textverktyget!">☕ Stöd oss</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Gratis Meningsräknare</h1>
+  <p class="page-desc">Klistra in din text och räkna meningar, stycken och genomsnittlig meningslängd direkt. Funkar på alla enheter — ingen installation, inget konto.</p>
+
+  <div class="editor-wrap">
+    <textarea id="input" placeholder="Klistra in eller skriv din text här…" spellcheck="true" aria-label="Text att räkna meningar i"></textarea>
+  </div>
+
+  <!-- Big sentence numbers -->
+  <div class="sent-hero">
+    <div class="sent-card primary-card">
+      <div class="sent-num" id="s-sent">0</div>
+      <div class="sent-label">Meningar</div>
+    </div>
+    <div class="sent-card">
+      <div class="sent-num" id="s-para">0</div>
+      <div class="sent-label">Stycken</div>
+    </div>
+  </div>
+
+  <!-- Avg sentence length meter -->
+  <div class="avg-meter">
+    <div class="avg-header">
+      <span class="avg-title">Genomsnittlig meningslängd</span>
+      <span class="avg-value"><span id="avg-val">0</span> ord/mening</span>
+    </div>
+    <div class="avg-label" id="avg-label">Skriv text ovan</div>
+    <div class="avg-bar-wrap">
+      <div class="avg-pointer" id="avg-pointer" style="left:0%"></div>
+    </div>
+    <div class="avg-bar-labels"><span>Lättläst (&lt;15)</span><span>Normalsvår</span><span>Svår (&gt;25)</span></div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-label">Ord</div><div class="stat-value" id="s-words">0</div></div>
+    <div class="stat-card"><div class="stat-label">Tecken</div><div class="stat-value" id="s-chars">0</div></div>
+    <div class="stat-card"><div class="stat-label">Lästid</div><div class="stat-value" id="s-read">–</div></div>
+    <div class="stat-card"><div class="stat-label">Rader</div><div class="stat-value" id="s-lines">0</div></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn primary" id="btn-copy">📋 Kopiera text</button>
+    <button class="btn" id="btn-clear">🗑 Rensa</button>
+  </div>
+
+  <a href="/" class="full-tool-link">✨ Öppna fullständiga verktyget — LIX, Base64, Sök &amp; Ersätt och mer →</a>
+
+  <!-- AdSense -->
+  <div style="margin: 28px 0; text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6696113059842943" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section class="seo-section">
+    <h2>Meningsräknare – allt om meningar och läsbarhet</h2>
+    <p>En <strong>meningsräknare</strong> är ett praktiskt verktyg för alla som vill kontrollera sin texts struktur och läsbarhet. Antalet meningar påverkar direkt hur läsbar din text är — kortare meningar gör texten lättare att förstå.</p>
+
+    <h3>Hur lång ska en mening vara?</h3>
+    <p>Det finns ingen fast regel, men forskning visar att lättlästa texter har kortare meningar. Här är en riktlinje:</p>
+    <table>
+      <tr><th>Meningslängd (ord)</th><th>Klassificering</th><th>Typiska texter</th></tr>
+      <tr><td>Under 10 ord</td><td>Mycket kort</td><td>Barnböcker, skylttexter</td></tr>
+      <tr><td>10–15 ord</td><td>Lättläst</td><td>Nyhetstexter, blogg</td></tr>
+      <tr><td>15–20 ord</td><td>Normalsvår</td><td>Dagstidningar, facklitteratur</td></tr>
+      <tr><td>20–25 ord</td><td>Svår</td><td>Akademiska texter</td></tr>
+      <tr><td>Över 25 ord</td><td>Mycket svår</td><td>Juridiska dokument</td></tr>
+    </table>
+
+    <h3>Vad räknas som en mening?</h3>
+    <p>En mening avslutas med punkt (.), frågetecken (?), utropstecken (!) eller ellips (…). Vår meningsräknare identifierar alla dessa automatiskt och ger dig ett exakt antal meningar i realtid.</p>
+
+    <h3>Varför räkna meningar?</h3>
+    <p>Meningsräkning används av <strong>lärare</strong> för att bedöma textkvalitet, av <strong>skribenter</strong> för att kontrollera LIX-värde, och av <strong>SEO-specialister</strong> för att säkerställa att texten är lättläst för webbbesökare. Google prioriterar lättlästa texter i sökresultaten.</p>
+  </section>
+
+  <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+    <h2>Vanliga frågor om meningsräkning</h2>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur räknar jag meningar gratis?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Klistra in din text i rutan ovan — antalet meningar räknas direkt och automatiskt. Helt gratis, ingen inloggning eller installation behövs.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur lång ska en mening vara?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">En lättläst mening har 10–20 ord. Dagstidningar och lättlästa texter har i snitt 14–18 ord per mening. Akademiska texter kan ha 25+ ord per mening, vilket gör dem svårare att följa.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Vad är genomsnittlig meningslängd?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Genomsnittlig meningslängd är det genomsnittliga antalet ord per mening. Det beräknas som: antal ord ÷ antal meningar. Under 15 ord per mening = lättläst. Över 25 = svår text.</p></div>
+    </div>
+
+    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <button class="faq-q" aria-expanded="false"><span itemprop="name">Hur förbättrar jag min texts läsbarhet?</span><span class="faq-icon">+</span></button>
+      <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Tre snabba sätt: (1) Dela upp långa meningar i kortare — sikta på max 20 ord. (2) Undvik bisatser i bisatser. (3) Använd aktiv röst istället för passiv. Kontrollera LIX-värdet med vår LIX-kalkylator.</p></div>
+    </div>
+  </section>
+
+  <!-- AdSense bottom -->
+  <div style="margin: 28px 0; text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6696113059842943" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Textverktyget.se · <a href="/">Alla verktyg</a> · <a href="/ordraknare.html">Ordräknare</a> · <a href="/lix-kalkylator.html">LIX-kalkylator</a> · <a href="/teckenraknare.html">Teckenräknare</a> · <a href="/integritetspolicy.html">Integritetspolicy</a></p>
+</footer>
+
+<div id="toast" role="alert" aria-live="assertive"></div>
+
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const debounce = (fn, ms=120) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+
+function toast(msg) {
+  const el = $('toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function analyze() {
+  const t = $('input').value;
+  const w = t.trim() ? t.trim().split(/\s+/).length : 0;
+  const c = t.length;
+  const s = (t.match(/[.!?…]+(?=\s|$)/g)||[]).length || (t.trim() ? 1 : 0);
+  const p = t.trim() ? t.trim().split(/\n{2,}/).filter(x=>x.trim()).length : 0;
+  const lines = t ? t.split('\n').length : 0;
+  const rt = w ? Math.max(1, Math.ceil(w/200)) : 0;
+  const avg = s && w ? +(w/s).toFixed(1) : 0;
+
+  $('s-sent').textContent = s;
+  $('s-para').textContent = p;
+  $('s-words').textContent = w;
+  $('s-chars').textContent = c;
+  $('s-read').textContent = rt ? rt + ' min' : '–';
+  $('s-lines').textContent = lines;
+  $('avg-val').textContent = avg;
+
+  // avg sentence meter
+  let label = 'Skriv text ovan';
+  let pct = 0;
+  if (avg) {
+    if (avg < 10)      { label = 'Mycket korta meningar'; pct = 8; }
+    else if (avg < 15) { label = 'Lättläst'; pct = 25; }
+    else if (avg < 20) { label = 'Normalsvår'; pct = 52; }
+    else if (avg < 25) { label = 'Svår'; pct = 72; }
+    else               { label = 'Mycket svår'; pct = 90; }
+  }
+  $('avg-label').textContent = label;
+  $('avg-pointer').style.left = pct + '%';
+}
+
+$('input').addEventListener('input', debounce(analyze));
+analyze();
+
+$('btn-copy').addEventListener('click', () => { navigator.clipboard.writeText($('input').value); toast('📋 Kopierat!'); });
+$('btn-clear').addEventListener('click', () => { $('input').value = ''; analyze(); $('input').focus(); });
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  });
+});
+</script>
+</body>
+</html>
